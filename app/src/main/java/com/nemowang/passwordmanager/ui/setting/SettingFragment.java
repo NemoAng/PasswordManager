@@ -1,4 +1,4 @@
-package com.nemowang.passwordmanager.ui.slideshow;
+package com.nemowang.passwordmanager.ui.setting;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,25 +12,24 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.nemowang.passwordmanager.R;
-import com.nemowang.passwordmanager.databinding.FragmentSlideshowBinding;
-import com.nemowang.passwordmanager.ui.slideshow.SlideshowViewModel;
+import com.nemowang.passwordmanager.databinding.FragmentSettingBinding;
 
-public class SlideshowFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+public class SettingFragment extends Fragment {
+
+    private SettingViewModel settingViewModel;
+    private FragmentSettingBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        settingViewModel =
+                new ViewModelProvider(this).get(SettingViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentSettingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textSetting;
+        settingViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

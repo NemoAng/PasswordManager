@@ -1,35 +1,57 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="Preference Category 1">
 
-    <PreferenceCategory app:title="@string/messages_header">
+        <SwitchPreference
+            app:defaultValue="true"
+            app:key="switch_preference_1"
+            android:title="Switch preference" />
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="switch_preference_2"
+            android:title="Switch preference" />
 
+        <SwitchPreference
+            app:defaultValue="false"
+            app:key="switch_preference_3"
+            android:title="Switch preference" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Preference Category 2">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_4"
+            app:summary="Enable/disable summary."
+            android:title="Switch preference" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="check_box_preference_1"
+            android:title="Check box preference" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="check_box_preference_2"
+            android:title="Check box preference" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Preference category 3">
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+            android:defaultValue="Select 1"
+            android:entries="@array/multiSelectDemo"
+            android:entryValues="@array/multiSelectDemo"
+            android:key="list_preference_1"
+            android:title="List preference" />
+
+        <MultiSelectListPreference
+            android:defaultValue="@array/multiSelectDemoDft"
+            android:entries="@array/multiSelectDemo"
+            android:entryValues="@array/multiSelectDemo"
+            android:key="multi_select_list_preference_1"
+            android:title="Multi select list preference" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
-    </PreferenceCategory>
 
 </PreferenceScreen>

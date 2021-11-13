@@ -2,8 +2,8 @@
     <string name="app_name">Password Manager</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Password Manager</string>
+    <string name="nav_header_subtitle">nemo.xun.jin.wang@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -26,4 +26,23 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="show_settings">Show Settings</string>
+
+    <string-array name="multiSelectDemo">
+        <item>Select 1</item>
+        <item>Select 2</item>
+        <item>Select 3</item>
+        <item>Select 4</item>
+        <item>Select 5</item>
+    </string-array>
+
+    <string-array name="multiSelectDemoDft">
+        <item>Select 1</item>
+        <item>Select 3</item>
+        <item>Select 5</item>
+    </string-array>
+
+    <string name="menu_setting">Setting</string>
+
 </resources>

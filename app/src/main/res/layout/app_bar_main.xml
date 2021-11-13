@@ -31,4 +31,14 @@
         android:layout_marginBottom="16dp"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/show"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/show_settings"
+        android:src="@drawable/ic_baseline_remove_red_eye_24"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

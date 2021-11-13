@@ -1,7 +1,9 @@
 package com.nemowang.passwordmanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -16,13 +18,20 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.nemowang.passwordmanager.databinding.ActivityMainBinding;
+
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    static Boolean sw1, sw2, sw3, sw4, ck1, ck2;
+    static String ls;
+    static Set<String> ms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_setting)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -53,9 +62,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
+
+        SharedPreferences sharedPref =
+                PreferenceManager.getDefaultSharedPreferences(this);
+
+        sw1 = sharedPref.getBoolean
+                (SettingsActivity.SW1, false);
+        sw2 = sharedPref.getBoolean
+                (SettingsActivity.SW2, false);
+        sw3 = sharedPref.getBoolean
+                (SettingsActivity.SW3, false);
+
+        sw4 = sharedPref.getBoolean
+                (SettingsActivity.SW4, false);
+        ck1 = sharedPref.getBoolean
+                (SettingsActivity.CK1, false);
+        ck2 = sharedPref.getBoolean
+                (SettingsActivity.CK2, false);
+
+        ls = sharedPref.getString
+                (SettingsActivity.LS, "-1");
+        ms = sharedPref.getStringSet
+                (SettingsActivity.MS, null);
+
+        Log.d("NEMO_DBG","preference 1: " + (sw1 ? "Enabled" : "Disabled"));
+        Log.d("NEMO_DBG","preference 2: " + (sw2 ? "Enabled" : "Disabled"));
+        Log.d("NEMO_DBG","preference 3: " + (sw3 ? "Enabled" : "Disabled"));
+
+        Log.d("NEMO_DBG","preference 4: " + (sw4 ? "Enabled" : "Disabled"));
+        Log.d("NEMO_DBG","preference 5: " + (ck1 ? "Checked" : "Unchecked"));
+        Log.d("NEMO_DBG","preference 6: " + (ck2 ? "Checked" : "Unchecked"));
+
+        Log.d("NEMO_DBG","preference 7: " + ls);
+        Log.d("NEMO_DBG","preference 8: " + ms);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.action_menu, menu);
         return true;
     }
 
@@ -68,10 +117,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.d("NEMO_DBG","onOptionsItemSelected");
+
         if (item.getItemId() == R.id.action_settings) {
+            Log.d("NEMO_DBG","action_settings");
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+            return true;
         }
-        return true;
+        return false;
     }
 }
