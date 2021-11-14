@@ -13,7 +13,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.PasswordManager.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.PasswordManager.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.PasswordManager.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--**********************************************************************************************-->
     <style name="Theme.Red_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor_Red</item>
@@ -27,22 +34,91 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="Theme.PasswordManager.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.PasswordManager.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.PasswordManager.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="Theme.Red_700_900.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
     <style name="Theme.Red_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.Red_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--**********************************************************************************************-->
+    <style name="Theme.Purple_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor_Purple</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor_Purple</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Purple</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor_Purple</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.Purple_700_900.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Purple_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Purple_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--**********************************************************************************************-->
+    <style name="Theme.Indigo_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor_Indigo</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor_Indigo</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Indigo</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor_Indigo</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.Indigo_700_900.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Indigo_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Indigo_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--**********************************************************************************************-->
+    <style name="Theme.Green_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor_Green</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor_Green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Green</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor_Green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.Green_700_900.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Green_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Green_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--**********************************************************************************************-->
+    <style name="Theme.Orange_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor_Orange</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor_Orange</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Orange</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor_Orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.Orange_700_900.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Orange_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Orange_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--**********************************************************************************************-->
 </resources>

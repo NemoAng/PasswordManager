@@ -9,7 +9,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_pass_generator">Password Generator</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
@@ -35,6 +35,21 @@
         <item>Select 3</item>
         <item>Select 4</item>
         <item>Select 5</item>
+    </string-array>
+
+<!--    setTheme(R.style.Theme_PasswordManager_NoActionBar);-->
+<!--    setTheme(R.style.Theme_Red_700_900_NoActionBar);-->
+<!--    setTheme(R.style.Theme_Purple_700_900_NoActionBar);-->
+<!--    setTheme(R.style.Theme_Indigo_700_900_NoActionBar);-->
+<!--    setTheme(R.style.Theme_Green_700_900_NoActionBar);-->
+
+
+    <string-array name="themeSetting">
+        <item>Default</item>
+        <item>Red</item>
+        <item>Purple</item>
+        <item>Indigo</item>
+        <item>Green</item>
     </string-array>
 
     <string-array name="multiSelectDemoDft">

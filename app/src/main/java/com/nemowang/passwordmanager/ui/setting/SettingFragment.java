@@ -1,9 +1,11 @@
 package com.nemowang.passwordmanager.ui.setting;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,10 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.nemowang.passwordmanager.R;
 import com.nemowang.passwordmanager.databinding.FragmentSettingBinding;
 
 
 public class SettingFragment extends Fragment {
+
+    private Button btnSetting;
 
     private SettingViewModel settingViewModel;
     private FragmentSettingBinding binding;
@@ -35,6 +40,19 @@ public class SettingFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+
+        btnSetting = root.findViewById(R.id.btn_setting);
+
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("NEMO_DBG","Setting Button");
+            }
+        });
+
+
+
         return root;
     }
 

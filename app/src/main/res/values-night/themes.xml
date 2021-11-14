@@ -28,4 +28,59 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.Purple_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryLightColor_Purple</item>
+        <item name="colorPrimaryVariant">@color/primaryColor_Purple</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Purple</item>
+        <item name="colorSecondaryVariant">@color/secondaryLightColor_Purple</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Indigo_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryLightColor_Indigo</item>
+        <item name="colorPrimaryVariant">@color/primaryColor_Indigo</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Indigo</item>
+        <item name="colorSecondaryVariant">@color/secondaryLightColor_Indigo</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Green_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryLightColor_Green</item>
+        <item name="colorPrimaryVariant">@color/primaryColor_Green</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Green</item>
+        <item name="colorSecondaryVariant">@color/secondaryLightColor_Green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Orange_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryLightColor_Orange</item>
+        <item name="colorPrimaryVariant">@color/primaryColor_Orange</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor_Orange</item>
+        <item name="colorSecondaryVariant">@color/secondaryLightColor_Orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
 </resources>
