@@ -20,9 +20,18 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String CK2 = "check_box_preference_2";
 
     public static final String LS = "list_preference_1";
+    public static final String MS = "multi_select_list_preference_1";
+
     public static final String SETTING_THEME = "setting_theme";
 
-    public static final String MS = "multi_select_list_preference_1";
+    public static final String SETTING_PASS_NUM = "setting_pass_number";
+    public static final String SETTING_PASS_LOW = "setting_pass_lower";
+    public static final String SETTING_PASS_UPP = "setting_pass_upper";
+    public static final String SETTING_PASS_BEG = "setting_pass_begin";
+    public static final String SETTING_PASS_SYM = "setting_pass_symbol";
+    public static final String SETTING_PASS_SIM = "setting_pass_similar";
+    public static final String SETTING_PASS_DUP = "setting_pass_duplicate";
+    public static final String SETTING_PASS_SEQ = "setting_pass_seq";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +61,11 @@ public class SettingsActivity extends AppCompatActivity {
         sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
                 if(key.equals(SETTING_THEME)) {
 //                    final String theme = sharedPreferences.getString
 //                            (SETTING_THEME, "-1");
-
+                    recreate();
                     Log.d("NEMO_DBG","SettingsActivity Theme" + "...");
                     recreate();
                 }else {
@@ -85,6 +95,9 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
             case "Green":
                 setTheme(R.style.Theme_Green_700_900);
+                break;
+            case "Orange":
+                setTheme(R.style.Theme_Orange_700_900);
                 break;
             default:
                 setTheme(R.style.Theme_PasswordManager);

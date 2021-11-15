@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/cour</item>
     </style>
 
     <style name="Theme.Red_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -26,6 +27,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/cour</item>
     </style>
 
     <style name="Theme.Purple_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -40,6 +42,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/cour</item>
     </style>
 
     <style name="Theme.Indigo_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -54,6 +57,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/cour</item>
     </style>
 
     <style name="Theme.Green_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -68,6 +72,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/cour</item>
     </style>
 
     <style name="Theme.Orange_700_900" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -82,5 +87,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/cour</item>
     </style>
 </resources>

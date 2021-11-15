@@ -10,6 +10,55 @@
     </PreferenceCategory>
 
 
+    <PreferenceCategory
+        android:scrollbarSize="?android:attr/scrollbarSize"
+        app:title="Password Generator">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="setting_pass_number"
+            android:title="Include Numbers" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="setting_pass_lower"
+            android:title="Include Lowercase Characters" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="setting_pass_upper"
+            android:title="Include Uppercase Characters" />
+
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="setting_pass_begin"
+            android:title="Begin With A Letter" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="setting_pass_symbol"
+            android:title="Include Symbols"
+            app:summaryOn="@string/pass_with_symbbols"
+            app:summaryOff="@string/pass_without_symbbols" />
+
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="setting_pass_similar"
+            android:title="No Similar Characters"
+            app:summary="@string/pass_similiar" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="setting_pass_duplicate"
+            android:title="No Duplicate Characters" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="setting_pass_seq"
+            android:title="No Sequential Characters" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory app:title="Preference Category 1">
 

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.nemowang.passwordmanager.databinding.ActivityMainBinding;
 
 import java.util.Set;
@@ -28,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    static Boolean sw1, sw2, sw3, sw4, ck1, ck2;
     static String ls;
-    static String SETTING_THEME;
     static Set<String> ms;
+
+    public static String SETTING_THEME;
+    public static Boolean SETTING_PASS_NUM,SETTING_PASS_LOW, SETTING_PASS_UPP,
+            SETTING_PASS_BEG, SETTING_PASS_SYM, SETTING_PASS_SIM,SETTING_PASS_DUP, SETTING_PASS_SEQ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +44,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+//        binding.appBarMain.show.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_setting)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_passgen, R.id.nav_setting)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -77,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
             case "Green":
                 setTheme(R.style.Theme_Green_700_900_NoActionBar);
                 break;
+            case "Orange":
+                setTheme(R.style.Theme_Orange_700_900_NoActionBar);
+                break;
             default:
                 setTheme(R.style.Theme_PasswordManager_NoActionBar);
         }
@@ -89,38 +96,33 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
-        sw1 = sharedPref.getBoolean
-                (SettingsActivity.SW1, false);
-        sw2 = sharedPref.getBoolean
-                (SettingsActivity.SW2, false);
-        sw3 = sharedPref.getBoolean
-                (SettingsActivity.SW3, false);
-
-        sw4 = sharedPref.getBoolean
-                (SettingsActivity.SW4, false);
-        ck1 = sharedPref.getBoolean
-                (SettingsActivity.CK1, false);
-        ck2 = sharedPref.getBoolean
-                (SettingsActivity.CK2, false);
 
         ls = sharedPref.getString
                 (SettingsActivity.LS, "-1");
         ms = sharedPref.getStringSet
                 (SettingsActivity.MS, null);
 
+//        /////////
         SETTING_THEME = sharedPref.getString
                 (SettingsActivity.SETTING_THEME, "-1");
 
-        Log.d("NEMO_DBG","preference 1: " + (sw1 ? "Enabled" : "Disabled"));
-        Log.d("NEMO_DBG","preference 2: " + (sw2 ? "Enabled" : "Disabled"));
-        Log.d("NEMO_DBG","preference 3: " + (sw3 ? "Enabled" : "Disabled"));
+        SETTING_PASS_NUM = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_NUM, false);
+        SETTING_PASS_LOW = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_LOW, false);
+        SETTING_PASS_UPP = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_UPP, false);
+        SETTING_PASS_BEG = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_BEG, false);
+        SETTING_PASS_SYM = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_SYM, false);
+        SETTING_PASS_SIM = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_SIM, false);
+        SETTING_PASS_DUP = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_DUP, false);
+        SETTING_PASS_SEQ = sharedPref.getBoolean
+                (SettingsActivity.SETTING_PASS_SEQ, false);
 
-        Log.d("NEMO_DBG","preference 4: " + (sw4 ? "Enabled" : "Disabled"));
-        Log.d("NEMO_DBG","preference 5: " + (ck1 ? "Checked" : "Unchecked"));
-        Log.d("NEMO_DBG","preference 6: " + (ck2 ? "Checked" : "Unchecked"));
-
-        Log.d("NEMO_DBG","preference 7: " + ls);
-        Log.d("NEMO_DBG","preference 8: " + ms);
 
         Log.d("NEMO_DBG","theme: " + SETTING_THEME);
     }
