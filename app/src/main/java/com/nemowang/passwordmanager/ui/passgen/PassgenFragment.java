@@ -9,13 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.nemowang.passwordmanager.MainActivity;
 import com.nemowang.passwordmanager.R;
 import com.nemowang.passwordmanager.databinding.FragmentPassgenBinding;
@@ -46,6 +46,13 @@ public class PassgenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        if(savedInstanceState == null) {
+            Log.d("NEMO_DBG", "savedInstanceState is null.");
+        } else {
+            Log.d("NEMO_DBG", "savedInstanceState not null.");
+        }
+
+
 //        passgenViewModel =
 //                new ViewModelProvider(this).get(PassgenViewModel.class);
 
@@ -75,6 +82,29 @@ public class PassgenFragment extends Fragment {
 //            }
 //        });
 
+        final TextView tvPassTxt = root.findViewById(R.id.tvPass);
+
+        switch (MainActivity.SETTING_THEME) {
+            case "Red":
+                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_red);
+                break;
+            case "Purple":
+                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_purple);
+                break;
+            case "Indigo":
+                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_indigo);
+                break;
+            case "Green":
+                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_green);
+                break;
+            case "Orange":
+                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_orange);
+                break;
+            default:
+                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_default);
+        }
+
+
         Spinner spinner = (Spinner) root.findViewById(R.id.spinner_password);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -96,34 +126,109 @@ public class PassgenFragment extends Fragment {
             }
         });
 
-
-
         btnPassGen = root.findViewById(R.id.btn_passgen);
         btnPassGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Log.d("NEMO_DBG","Password Generated...");
 
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_NUM?"Enable1":"Disable1");
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_LOW?"Enable2":"Disable2");
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_UPP?"Enable3":"Disable3");
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_BEG?"Enable4":"Disable4");
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SYM?"Enable5":"Disable5");
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SIM?"Enable6":"Disable6");
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_DUP?"Enable7":"Disable7");
-                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SEQ?"Enable8":"Disable8");
+                StringBuilder sources = new StringBuilder();
+
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_NUM?"Enable1":"Disable1");
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_LOW?"Enable2":"Disable2");
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_UPP?"Enable3":"Disable3");
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_BEG?"Enable4":"Disable4");
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SYM?"Enable5":"Disable5");
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SIM?"Enable6":"Disable6");
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_DUP?"Enable7":"Disable7");
+//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SEQ?"Enable8":"Disable8");
+
+                StringBuilder passbuilder = new StringBuilder();
 
                 if(! MainActivity.SETTING_PASS_NUM && !MainActivity.SETTING_PASS_LOW && !MainActivity.SETTING_PASS_UPP){
                     Toast.makeText(getActivity(), "Password generator options not correct.", Toast.LENGTH_SHORT).show();
-
-                    Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                    Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                    return;
                 }
 
+                int pass_number = MainActivity.SETTING_PASS_NUM ? 1 : 0;
+                int pass_lower = MainActivity.SETTING_PASS_LOW ? 1 : 0;
+                int pass_upper = MainActivity.SETTING_PASS_UPP ? 1 : 0;
+
+
+                if(passwordLen <= 15 || (!MainActivity.SETTING_PASS_SYM && (pass_number + pass_lower + pass_upper) < 3)){
+                    Toast.makeText(getActivity(), "Your password is too weak.", Toast.LENGTH_SHORT).show();
+                }
+
+                if(MainActivity.SETTING_PASS_NUM){
+                    sources.append(passNumber);
+                }
+                if(MainActivity.SETTING_PASS_LOW){
+                    sources.append(passLower);
+                }
+                if(MainActivity.SETTING_PASS_UPP){
+                    sources.append(passUpper);
+                }
+                if(MainActivity.SETTING_PASS_SYM){
+                    sources.append(passSymbol);
+                }
+
+                if(MainActivity.SETTING_PASS_BEG) {
+                    String pass1 = passLower+passUpper;
+                    passbuilder.append(pass1.charAt(rand.nextInt(pass1.length())));
+                }
+
+                if(MainActivity.SETTING_PASS_SIM) {
+                    for (char ch : passSimilar.toCharArray()) {
+                        sources.deleteCharAt(passSimilar.indexOf(String.valueOf(ch)));
+                    }
+                }
+
+                if(MainActivity.SETTING_PASS_DUP) {
+                    int idx, idx_comp = sources.length();
+                    if(MainActivity.SETTING_PASS_SEQ) {
+                        for (int i=0; i < passwordLen; i++) {
+                            idx = rand.nextInt(sources.length());
+                            while((idx == idx_comp) || ((idx_comp != 0) && (idx == (idx_comp-1)))){
+                                idx = rand.nextInt(sources.length());
+                            }
+                            passbuilder.append(sources.charAt(idx));
+                            sources.deleteCharAt(idx);
+                            idx_comp = idx;
+                        }
+                    }
+                    else {
+                        for (int i=0; i < passwordLen; i++) {
+                            idx = rand.nextInt(sources.length());
+                            passbuilder.append(sources.charAt(idx));
+                            sources.deleteCharAt(idx);
+                        }
+                    }
+
+                } else {
+                    int idx, idx_comp = sources.length();
+                    if(MainActivity.SETTING_PASS_SEQ) {
+                        for (int i=0; i < passwordLen; i++) {
+                            idx = rand.nextInt(sources.length());
+                            while((idx == idx_comp) || ((idx_comp != 0) && (idx == (idx_comp-1)))){
+                                idx = rand.nextInt(sources.length());
+                            }
+                            passbuilder.append(sources.charAt(idx));
+
+                            idx_comp = idx;
+                        }
+                    }
+                    else {
+                        for (int i=0; i < passwordLen; i++) {
+                            idx = rand.nextInt(sources.length());
+                            passbuilder.append(sources.charAt(idx));
+                        }
+                    }
+                }
+                tvPassTxt.setText(passbuilder.toString());
             }
         });
-
-
 
         return root;
     }
