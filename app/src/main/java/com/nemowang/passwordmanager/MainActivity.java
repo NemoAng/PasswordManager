@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -67,7 +67,31 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+    public void setNavBg(){
+        LinearLayout nav_header = (LinearLayout)findViewById(R.id.nav_header);
+        switch (SETTING_THEME) {
+            case "Red":
+                nav_header.setBackgroundResource(R.drawable.side_nav_bar_red);
+                break;
+            case "Purple":
+                nav_header.setBackgroundResource(R.drawable.side_nav_bar_pruple);
+                break;
+            case "Indigo":
+                nav_header.setBackgroundResource(R.drawable.side_nav_bar_indigo);
+                break;
+            case "Green":
+                nav_header.setBackgroundResource(R.drawable.side_nav_bar_green);
+                break;
+            case "Orange":
+                nav_header.setBackgroundResource(R.drawable.side_nav_bar_orange);
+                break;
+            default:
+                nav_header.setBackgroundResource(R.drawable.side_nav_bar_default);
+        }
+    }
+
     public void setTheme(){
+
         switch (SETTING_THEME) {
             case "Red":
                 setTheme(R.style.Theme_Red_700_900_NoActionBar);
@@ -89,20 +113,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void getSettings(){
         PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
 
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
-
         ls = sharedPref.getString
                 (SettingsActivity.LS, "-1");
         ms = sharedPref.getStringSet
                 (SettingsActivity.MS, null);
 
-//        /////////
         SETTING_THEME = sharedPref.getString
                 (SettingsActivity.SETTING_THEME, "-1");
 
@@ -123,21 +144,20 @@ public class MainActivity extends AppCompatActivity {
         SETTING_PASS_SEQ = sharedPref.getBoolean
                 (SettingsActivity.SETTING_PASS_SEQ, false);
 
-
         Log.d("NEMO_DBG","theme: " + SETTING_THEME);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        this.setNavBg();
         getMenuInflater().inflate(R.menu.action_menu, menu);
+
         return true;
     }
 

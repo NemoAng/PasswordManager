@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14791666666666667" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable-v24/pass_text_bg_red.xml" value="0.271875" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable-v24/side_nav_bar_orange.xml" value="0.17604166666666668" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.14791666666666667" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/ic_baseline_security_24.xml" value="0.14114583333333333" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2677083333333333" />
@@ -20,6 +21,10 @@
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/pass_text_bg_orange.xml" value="0.271875" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/pass_text_bg_purple.xml" value="0.271875" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/side_nav_bar.xml" value="0.2677083333333333" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/side_nav_bar_default.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/side_nav_bar_green.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/side_nav_bar_indigo.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/side_nav_bar_pruple.xml" value="0.17604166666666668" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/side_nav_bar_red.xml" value="0.2677083333333333" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/xxxxxxxx.xml" value="0.17760416666666667" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/font/courier_font.xml" value="0.2859375" />

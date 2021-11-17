@@ -1,5 +1,8 @@
 package com.nemowang.passwordmanager.ui.passgen;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,22 +37,33 @@ public class PassgenFragment extends Fragment {
     private boolean noSequential = false;
     private final Integer DEFAULT_PASS_LEN = 6;
     private Integer passwordLen = DEFAULT_PASS_LEN;
+    private final String PASS_LEN_KEY = "com.nemowang.passwordmanager.ui.passgen.PASS_LEN_KEY";
+    private final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.ui.passgen.PASS_COPY_LABEL";
 
     Random rand = new Random();
 
-    private Button btnPassGen;
+    private Button btnPassGen, btnCopy;
     private FloatingActionButton fab;
 
     private PassgenViewModel passgenViewModel;
     private FragmentPassgenBinding binding;
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(PASS_LEN_KEY, "50");
+    }
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         if(savedInstanceState == null) {
-            Log.d("NEMO_DBG", "savedInstanceState is null.");
+            Log.d("NEMO_DBG", "savedInstanceState is null.------");
         } else {
-            Log.d("NEMO_DBG", "savedInstanceState not null.");
+            Log.d("NEMO_DBG", "savedInstanceState not null.++++++");
+            String len = savedInstanceState.getString(PASS_LEN_KEY);
+            Log.d("NEMO_DBG", len);
         }
 
 
@@ -123,6 +137,21 @@ public class PassgenFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 Log.d("NEMO_DBG", String.valueOf(parent));
+            }
+        });
+
+        btnCopy = root.findViewById(R.id.btn_copy);
+        btnCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager cbManager =  (ClipboardManager)root.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+
+                // Creates a new text clip to put on the clipboard
+                ClipData clip = ClipData.newPlainText(PASS_COPY_LABEL, (String) tvPassTxt.getText());
+//                Log.d("NEMO_DBG", (String) tvPassTxt.getText());
+
+                // Set the clipboard's primary clip.
+                cbManager.setPrimaryClip(clip);
             }
         });
 
