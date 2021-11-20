@@ -66,10 +66,9 @@ public class SettingsActivity extends AppCompatActivity {
 //                    final String theme = sharedPreferences.getString
 //                            (SETTING_THEME, "-1");
                     recreate();
-                    Log.d("NEMO_DBG","SettingsActivity Theme" + "...");
-                    recreate();
+                    Log.d("NEMO_DBG","Theme changing...");
                 }else {
-                    Log.d("NEMO_DBG","SettingsActivity Updated" + "...");
+                    Log.d("NEMO_DBG","Settings changing");
                 }
             }
         });

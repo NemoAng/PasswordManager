@@ -41,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
         this.setTheme();
         super.onCreate(savedInstanceState);
 
+        if(savedInstanceState == null) {
+            Log.d("NEMO_DBG", "------------------");
+        } else {
+            Log.d("NEMO_DBG", "++++++++++++++++++");
+        }
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -56,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -63,8 +71,52 @@ public class MainActivity extends AppCompatActivity {
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        // QQQQ
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @SuppressLint("NonConstantResourceId")
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                Log.d("NEMO_DBG","onNavigationItemSelected: " + item.getTitle());
+//
+//                item.setChecked(true);
+//                drawer.closeDrawers();
+//
+//                switch (item.getItemId()) {
+//                    case R.id.nav_home:
+//                        navController.navigate(R.id.nav_home);
+//                        break;
+//                    case R.id.nav_gallery:
+//                        navController.navigate(R.id.nav_gallery);
+//                        break;
+//                    case R.id.nav_passgen:
+//                        navController.navigate(R.id.nav_passgen);
+//                        break;
+//                    case R.id.nav_setting:
+//                        navController.navigate(R.id.nav_setting);
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("NEMO_DBG", "++++++++++++++++++ onStart");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("NEMO_DBG", "++++++++++++++++++ onPause");
+
+        Log.d("NEMO_DBG", "Current Navi Item: " + getActivity().);
     }
 
     public void setNavBg(){
@@ -143,13 +195,6 @@ public class MainActivity extends AppCompatActivity {
                 (SettingsActivity.SETTING_PASS_DUP, false);
         SETTING_PASS_SEQ = sharedPref.getBoolean
                 (SettingsActivity.SETTING_PASS_SEQ, false);
-
-//        Log.d("NEMO_DBG","theme: " + SETTING_THEME);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
     @Override
@@ -158,26 +203,29 @@ public class MainActivity extends AppCompatActivity {
         this.setNavBg();
         getMenuInflater().inflate(R.menu.action_menu, menu);
 
+        Log.d("NEMO_DBG", "onCreateOptionsMenu");
         return true;
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+
+        Log.d("NEMO_DBG", "onSupportNavigateUp");
+
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Log.d("NEMO_DBG","onOptionsItemSelected");
-
         if (item.getItemId() == R.id.action_settings) {
-            Log.d("NEMO_DBG","action_settings");
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }
-        return false;
+
+//        return super.onOptionsItemSelected(item); // yes
+        return false; // yes
     }
 }
