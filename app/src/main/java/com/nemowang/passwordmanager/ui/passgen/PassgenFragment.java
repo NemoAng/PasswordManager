@@ -1,11 +1,14 @@
 package com.nemowang.passwordmanager.ui.passgen;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -36,24 +39,26 @@ public class PassgenFragment extends Fragment {
     private boolean noDuplicate = false;
     private boolean noSequential = false;
     private final Integer DEFAULT_PASS_LEN = 6;
-    private Integer passwordLen = DEFAULT_PASS_LEN;
+    private Integer passwordLen = 0;
     private final String PASS_LEN_KEY = "com.nemowang.passwordmanager.ui.passgen.PASS_LEN_KEY";
     private final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.ui.passgen.PASS_COPY_LABEL";
 
     Random rand = new Random();
 
     private Button btnPassGen, btnCopy;
+    private TextView tvPassTxt;
+    private View.OnClickListener btnPassGenClick;
     private FloatingActionButton fab;
 
     private PassgenViewModel passgenViewModel;
     private FragmentPassgenBinding binding;
+    View root;
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(PASS_LEN_KEY, "50");
-    }
-
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putString(PASS_LEN_KEY, "50");
+//    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,18 +67,15 @@ public class PassgenFragment extends Fragment {
             Log.d("NEMO_DBG", "savedInstanceState is null.------");
         } else {
             Log.d("NEMO_DBG", "savedInstanceState not null.++++++");
-            String len = savedInstanceState.getString(PASS_LEN_KEY);
-            Log.d("NEMO_DBG", len);
+//            String len = savedInstanceState.getString(PASS_LEN_KEY);
+//            Log.d("NEMO_DBG", len);
         }
-
 
 //        passgenViewModel =
 //                new ViewModelProvider(this).get(PassgenViewModel.class);
 
         binding = FragmentPassgenBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-
+        root = binding.getRoot();
 
 //        final TextView textView = binding.textPassgen;
 //        passgenViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -82,7 +84,6 @@ public class PassgenFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
-
 
 //        fab = root.findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +97,7 @@ public class PassgenFragment extends Fragment {
 //            }
 //        });
 
-        final TextView tvPassTxt = root.findViewById(R.id.tvPass);
+        tvPassTxt = root.findViewById(R.id.tvPass);
 
         switch (MainActivity.SETTING_THEME) {
             case "Red":
@@ -118,7 +119,6 @@ public class PassgenFragment extends Fragment {
                 tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_default);
         }
 
-
         Spinner spinner = (Spinner) root.findViewById(R.id.spinner_password);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -128,50 +128,56 @@ public class PassgenFragment extends Fragment {
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+        SharedPreferences preferences = getActivity().getSharedPreferences("pass_length", Context.MODE_PRIVATE);
+        int position = preferences.getInt("PASS_LEN_POSITION", 0);
+        passwordLen = position + DEFAULT_PASS_LEN;
+
+        spinner.setSelected(false);  // must
+        spinner.setSelection(position,true);  //must
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                passwordLen = position + DEFAULT_PASS_LEN;
+                SharedPreferences preferences = getActivity().getSharedPreferences("pass_length", Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("PASS_LEN_POSITION", position);
+                if (editor.commit()) {
+                    passwordLen = position + DEFAULT_PASS_LEN;
+                    Log.d("NEMO_DBG", "Write successfully.");
+                }
+                tvPassTxt.setText(null);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Log.d("NEMO_DBG", String.valueOf(parent));
+                Log.d("NEMO_DBG", "Nothing Selected.");
             }
         });
 
         btnCopy = root.findViewById(R.id.btn_copy);
-        btnCopy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager cbManager =  (ClipboardManager)root.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        btnCopy.setOnTouchListener(btnEffect);
 
-                // Creates a new text clip to put on the clipboard
-                ClipData clip = ClipData.newPlainText(PASS_COPY_LABEL, (String) tvPassTxt.getText());
-//                Log.d("NEMO_DBG", (String) tvPassTxt.getText());
-
-                // Set the clipboard's primary clip.
-                cbManager.setPrimaryClip(clip);
-            }
-        });
+//        btnCopy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ClipboardManager cbManager =  (ClipboardManager)root.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+//
+//                // Creates a new text clip to put on the clipboard
+//                ClipData clip = ClipData.newPlainText(PASS_COPY_LABEL, (String) tvPassTxt.getText());
+//                cbManager.setPrimaryClip(clip);
+//            }
+//        });
 
         btnPassGen = root.findViewById(R.id.btn_passgen);
-        btnPassGen.setOnClickListener(new View.OnClickListener() {
+
+        btnPassGen.setOnTouchListener(btnEffect);
+
+//        btnPassGen.setOnClickListener(new View.OnClickListener() {
+        btnPassGenClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.d("NEMO_DBG","Password Generated...");
-
                 StringBuilder sources = new StringBuilder();
-
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_NUM?"Enable1":"Disable1");
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_LOW?"Enable2":"Disable2");
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_UPP?"Enable3":"Disable3");
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_BEG?"Enable4":"Disable4");
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SYM?"Enable5":"Disable5");
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SIM?"Enable6":"Disable6");
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_DUP?"Enable7":"Disable7");
-//                Log.d("NEMO_DBG", MainActivity.SETTING_PASS_SEQ?"Enable8":"Disable8");
-
                 StringBuilder passbuilder = new StringBuilder();
 
                 if(! MainActivity.SETTING_PASS_NUM && !MainActivity.SETTING_PASS_LOW && !MainActivity.SETTING_PASS_UPP){
@@ -214,6 +220,7 @@ public class PassgenFragment extends Fragment {
                     }
                 }
 
+                passwordLen = MainActivity.SETTING_PASS_BEG ? passwordLen - 1: passwordLen;
                 if(MainActivity.SETTING_PASS_DUP) {
                     int idx, idx_comp = sources.length();
                     if(MainActivity.SETTING_PASS_SEQ) {
@@ -257,10 +264,42 @@ public class PassgenFragment extends Fragment {
                 }
                 tvPassTxt.setText(passbuilder.toString());
             }
-        });
-
+        }
+//        )
+        ;
         return root;
     }
+
+    private View.OnTouchListener btnEffect = new View.OnTouchListener() {
+        @SuppressLint("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    v.setAlpha(0.6F);
+                    break;
+                }
+                case MotionEvent.ACTION_UP:
+                    // Your action here on button click
+                    if(v.getId() == R.id.btn_copy) {
+                        ClipboardManager cbManager =  (ClipboardManager)root.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+
+                        // Creates a new text clip to put on the clipboard
+                        ClipData clip = ClipData.newPlainText(PASS_COPY_LABEL, (String) tvPassTxt.getText());
+                        cbManager.setPrimaryClip(clip);
+                    }
+                    else if(v.getId() == R.id.btn_passgen){
+                        btnPassGenClick.onClick(v);
+                    }
+                case MotionEvent.ACTION_CANCEL: {
+                    v.setAlpha(1F);
+                    break;
+                }
+            }
+            v.invalidate();
+            return true;
+        }
+    };
 
     @Override
     public void onDestroyView() {

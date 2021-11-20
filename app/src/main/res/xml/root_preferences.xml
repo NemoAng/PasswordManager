@@ -1,43 +1,42 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory app:title="Theme Selection">
+    <PreferenceCategory app:title="@string/theme_selection">
         <ListPreference
             android:defaultValue="Default"
-            android:entries="@array/themeSetting"
-            android:entryValues="@array/themeSetting"
+            android:entries="@array/theme_setting"
+            android:entryValues="@array/theme_setting"
             android:key="setting_theme"
-            android:title="Theme List" />
+            android:title="@string/theme_list" />
     </PreferenceCategory>
-
 
     <PreferenceCategory
         android:scrollbarSize="?android:attr/scrollbarSize"
-        app:title="Password Generator">
+        app:title="@string/menu_pass_generator">
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="setting_pass_number"
-            android:title="Include Numbers" />
+            android:title="@string/inc_num" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="setting_pass_lower"
-            android:title="Include Lowercase Characters" />
+            android:title="@string/inc_lower" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="setting_pass_upper"
-            android:title="Include Uppercase Characters" />
+            android:title="@string/inc_upper" />
 
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="setting_pass_begin"
-            android:title="Begin With A Letter" />
+            android:title="@string/letter_begin" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="setting_pass_symbol"
-            android:title="Include Symbols"
+            android:title="@string/inc_symbol"
             app:summaryOn="@string/pass_with_symbbols"
             app:summaryOff="@string/pass_without_symbbols" />
 
@@ -45,18 +44,18 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="setting_pass_similar"
-            android:title="No Similar Characters"
+            android:title="@string/no_similiar"
             app:summary="@string/pass_similiar" />
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="setting_pass_duplicate"
-            android:title="No Duplicate Characters" />
+            android:title="@string/no_duplicate" />
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="setting_pass_seq"
-            android:title="No Sequential Characters" />
+            android:title="@string/no_sequential" />
 
     </PreferenceCategory>
 

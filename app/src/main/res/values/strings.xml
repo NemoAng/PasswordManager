@@ -44,14 +44,7 @@
 <!--    setTheme(R.style.Theme_Green_700_900_NoActionBar);-->
 
 
-    <string-array name="themeSetting">
-        <item>Default</item>
-        <item>Red</item>
-        <item>Purple</item>
-        <item>Indigo</item>
-        <item>Green</item>
-        <item>Orange</item>
-    </string-array>
+
 
     <string-array name="multiSelectDemoDft">
         <item>Select 1</item>
@@ -115,5 +108,16 @@
         <item>49</item>
         <item>50</item>
     </string-array>
+    <string name="theme_selection">Theme Selection</string>
+    <string name="theme_list">Theme List</string>
+    <string name="inc_num">Include Numbers</string>
+    <string name="inc_lower">Include Lowercase Characters</string>
+    <string name="inc_upper">Include Uppercase Characters</string>
+    <string name="letter_begin">Begin With A Letter</string>
+    <string name="no_duplicate">No Duplicate Characters</string>
+    <string name="no_sequential">No Sequential Characters</string>
+    <string name="inc_symbol">Include Symbols</string>
+    <string name="no_similiar">No Similar Characters</string>
+
 
 </resources>

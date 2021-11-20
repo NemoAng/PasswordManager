@@ -32,7 +32,7 @@
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_gallery.xml" value="0.2515625" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_passgen.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_passgen.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_setting.xml" value="0.11927083333333334" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_slideshow.xml" value="0.2515625" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/nav_header_main.xml" value="0.1703125" />
@@ -52,5 +52,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>

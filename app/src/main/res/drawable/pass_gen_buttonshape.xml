@@ -6,15 +6,10 @@
         android:bottomLeftRadius="24dp"
         android:bottomRightRadius="24dp"
         />
-    <solid
-        android:color="#4F1A07"
-        />
+
     <size
-        android:width="144dp"
+        android:width="168dp"
         android:height="48dp"
         />
-    <stroke
-        android:width="3dp"
-        android:color="#878787"
-        />
+
 </shape>

@@ -10,13 +10,13 @@
         <item>reply_all</item>
     </string-array>
 
-    <string-array name="theme_setting">
-        <item>Default</item>
-        <item>Red</item>
-        <item>Purple</item>
-        <item>Indigo</item>
-        <item>Green</item>
-        <item>Orange</item>
-    </string-array>
+<!--    <string-array name="theme_setting">-->
+<!--        <item>默认</item>-->
+<!--        <item>红色</item>-->
+<!--        <item>紫色</item>-->
+<!--        <item>靛青</item>-->
+<!--        <item>绿色</item>-->
+<!--        <item>橙色</item>-->
+<!--    </string-array>-->
 
 </resources>

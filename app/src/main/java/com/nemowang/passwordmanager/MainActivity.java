@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         SETTING_PASS_SEQ = sharedPref.getBoolean
                 (SettingsActivity.SETTING_PASS_SEQ, false);
 
-        Log.d("NEMO_DBG","theme: " + SETTING_THEME);
+//        Log.d("NEMO_DBG","theme: " + SETTING_THEME);
     }
 
     @Override
