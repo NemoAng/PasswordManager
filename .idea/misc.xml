@@ -6,6 +6,7 @@
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14791666666666667" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable-v24/pass_text_bg_red.xml" value="0.271875" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable-v24/side_nav_bar_orange.xml" value="0.17604166666666668" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.14791666666666667" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/ic_baseline_security_24.xml" value="0.14114583333333333" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2677083333333333" />
@@ -28,6 +29,7 @@
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/side_nav_bar_red.xml" value="0.2677083333333333" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/drawable/xxxxxxxx.xml" value="0.17760416666666667" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/font/courier_font.xml" value="0.2859375" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/account_input.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/content_main.xml" value="0.1" />
@@ -37,6 +39,8 @@
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_setting.xml" value="0.11927083333333334" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/fragment_slideshow.xml" value="0.2515625" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/nav_header_main.xml" value="0.1703125" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/recyclerview_item.xml" value="0.15495867768595042" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/recyclerview_item2.xml" value="0.37256719184430026" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/spinner_pass.xml" value="0.11574074074074074" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/menu/action_menu.xml" value="0.2557291666666667" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/menu/activity_main_drawer.xml" value="0.6" />

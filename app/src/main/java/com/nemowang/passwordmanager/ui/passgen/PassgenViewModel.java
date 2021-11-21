@@ -8,10 +8,10 @@ public class PassgenViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-//    public PassgenViewModel() {
-//        mText = new MutableLiveData<>();
-//        mText.setValue("This is password gen........ ");
-//    }
+    public PassgenViewModel() {
+        mText = new MutableLiveData<>();
+        mText.setValue("This is password gen........ ");
+    }
 
     public LiveData<String> getText() {
         return mText;

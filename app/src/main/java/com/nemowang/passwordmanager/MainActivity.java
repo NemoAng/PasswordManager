@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             SETTING_PASS_BEG, SETTING_PASS_SYM, SETTING_PASS_SIM,SETTING_PASS_DUP, SETTING_PASS_SEQ;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSettings();
@@ -103,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
 //                return true;
 //            }
 //        });
+
+
+
+
     }
 
     @Override
@@ -116,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         Log.d("NEMO_DBG", "++++++++++++++++++ onPause");
 
-        Log.d("NEMO_DBG", "Current Navi Item: " + getActivity().);
+//        Log.d("NEMO_DBG", "Current Navi Item: " + getViewModelStore().);
     }
 
     public void setNavBg(){
@@ -126,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 nav_header.setBackgroundResource(R.drawable.side_nav_bar_red);
                 break;
             case "Purple":
-                nav_header.setBackgroundResource(R.drawable.side_nav_bar_pruple);
+                nav_header.setBackgroundResource(R.drawable.side_nav_bar_purple);
                 break;
             case "Indigo":
                 nav_header.setBackgroundResource(R.drawable.side_nav_bar_indigo);
