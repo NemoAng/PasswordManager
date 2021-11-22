@@ -191,7 +191,6 @@ public class PassgenFragment extends Fragment {
                 int pass_lower = MainActivity.SETTING_PASS_LOW ? 1 : 0;
                 int pass_upper = MainActivity.SETTING_PASS_UPP ? 1 : 0;
 
-
                 if(passwordLen <= 15 || (!MainActivity.SETTING_PASS_SYM && (pass_number + pass_lower + pass_upper) < 3)){
                     Toast.makeText(getActivity(), "Your password is too weak.", Toast.LENGTH_SHORT).show();
                 }
@@ -287,6 +286,8 @@ public class PassgenFragment extends Fragment {
                         // Creates a new text clip to put on the clipboard
                         ClipData clip = ClipData.newPlainText(PASS_COPY_LABEL, (String) tvPassTxt.getText());
                         cbManager.setPrimaryClip(clip);
+
+                        Toast.makeText(getActivity(), "Password copied.", Toast.LENGTH_SHORT).show();
                     }
                     else if(v.getId() == R.id.btn_passgen){
                         btnPassGenClick.onClick(v);

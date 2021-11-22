@@ -137,4 +137,5 @@
     <string name="txt_title" translatable="false">Title:</string>
     <string name="account" translatable="false">Account:</string>
     <string name="password" translatable="false">Password:</string>
+    <string name="paste">Paste</string>
 </resources>

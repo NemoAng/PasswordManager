@@ -1,6 +1,10 @@
 package com.nemowang.passwordmanager.ui.home;
 
 
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +68,7 @@ public class HomeFragment extends Fragment {
 
                 Button mOk = (Button) mView.findViewById(R.id.save);
                 Button mCancel = (Button) mView.findViewById(R.id.cancel);
+                Button mPaste = (Button) mView.findViewById(R.id.paste);
 
                 //  Create the AlertDialog using everything we needed from above
                 mBuilder.setView(mView);
@@ -73,10 +78,13 @@ public class HomeFragment extends Fragment {
                 mOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
-                        if (mTitle.getText().toString().isEmpty()) {
-                            Toast.makeText(getActivity(), "Title is empty!", Toast.LENGTH_SHORT).show();
+                        if (mName.getText().toString().isEmpty() && mPassword.getText().toString().isEmpty()) {
+                            Toast.makeText(getActivity(), "Title and password must be provided.", Toast.LENGTH_SHORT).show();
                         } else {
-//                            Toast.makeText(getActivity(), "Please enter a Value!", Toast.LENGTH_LONG).show();
+//
+
+
+
                             timerDialog.dismiss();
                         }
                     }
@@ -90,11 +98,23 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-                //  Finally, SHOW your Dialog!
+                //
+                mPaste.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick (View view) {
+                        ClipboardManager clipboard =  (ClipboardManager)root.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+
+                        if(clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+                            ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+                            // Gets the clipboard as text.
+                            mPassword.setText(item.getText());
+                        }
+                    }
+                });
+
                 timerDialog.show();
             }
         });
-
 
         RecyclerView recyclerView = root.findViewById(R.id.recyclerview);
         final AccountListAdapter adapter = new AccountListAdapter(new AccountListAdapter.AccountDiff());
