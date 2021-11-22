@@ -98,26 +98,7 @@ public class PassgenFragment extends Fragment {
 //        });
 
         tvPassTxt = root.findViewById(R.id.tvPass);
-
-        switch (MainActivity.SETTING_THEME) {
-            case "Red":
-                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_red);
-                break;
-            case "Purple":
-                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_purple);
-                break;
-            case "Indigo":
-                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_indigo);
-                break;
-            case "Green":
-                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_green);
-                break;
-            case "Orange":
-                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_orange);
-                break;
-            default:
-                tvPassTxt.setBackgroundResource(R.drawable.pass_text_bg_default);
-        }
+        MainActivity.setBackgroundResource(tvPassTxt);
 
         Spinner spinner = (Spinner) root.findViewById(R.id.spinner_password);
         // Create an ArrayAdapter using the string array and a default spinner layout

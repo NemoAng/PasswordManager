@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     public static String SETTING_THEME;
     public static Boolean SETTING_PASS_NUM,SETTING_PASS_LOW, SETTING_PASS_UPP,
             SETTING_PASS_BEG, SETTING_PASS_SYM, SETTING_PASS_SIM,SETTING_PASS_DUP, SETTING_PASS_SEQ;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,10 +102,6 @@ public class MainActivity extends AppCompatActivity {
 //                return true;
 //            }
 //        });
-
-
-
-
     }
 
     @Override
@@ -123,27 +117,28 @@ public class MainActivity extends AppCompatActivity {
 
 //        Log.d("NEMO_DBG", "Current Navi Item: " + getViewModelStore().);
     }
+    
 
-    public void setNavBg(){
-        LinearLayout nav_header = (LinearLayout)findViewById(R.id.nav_header);
+    public static void setBackgroundResource(View view){
+//        LinearLayout nav_header = (LinearLayout)findViewById(R.id.nav_header);
         switch (SETTING_THEME) {
             case "Red":
-                nav_header.setBackgroundResource(R.drawable.side_nav_bar_red);
+                view.setBackgroundResource(R.drawable.side_nav_bar_red);
                 break;
             case "Purple":
-                nav_header.setBackgroundResource(R.drawable.side_nav_bar_purple);
+                view.setBackgroundResource(R.drawable.side_nav_bar_purple);
                 break;
             case "Indigo":
-                nav_header.setBackgroundResource(R.drawable.side_nav_bar_indigo);
+                view.setBackgroundResource(R.drawable.side_nav_bar_indigo);
                 break;
             case "Green":
-                nav_header.setBackgroundResource(R.drawable.side_nav_bar_green);
+                view.setBackgroundResource(R.drawable.side_nav_bar_green);
                 break;
             case "Orange":
-                nav_header.setBackgroundResource(R.drawable.side_nav_bar_orange);
+                view.setBackgroundResource(R.drawable.side_nav_bar_orange);
                 break;
             default:
-                nav_header.setBackgroundResource(R.drawable.side_nav_bar_default);
+                view.setBackgroundResource(R.drawable.side_nav_bar_default);
         }
     }
 
@@ -205,7 +200,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        this.setNavBg();
+        
+        this.setBackgroundResource(findViewById(R.id.nav_header));
+
+
         getMenuInflater().inflate(R.menu.action_menu, menu);
 
         Log.d("NEMO_DBG", "onCreateOptionsMenu");

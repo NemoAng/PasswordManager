@@ -10,13 +10,14 @@
         android:layout_height="200dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
+
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:id="@+id/lLTitleAndName"
-            android:background="@drawable/side_nav_bar_green"
+            android:background="@drawable/side_nav_bar_default"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"

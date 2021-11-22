@@ -29,7 +29,7 @@ public abstract class AccountRoomDatabase extends RoomDatabase {
 //        }
 //    };
 
-    static AccountRoomDatabase getDatabase(final Context context) {
+    public static AccountRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AccountRoomDatabase.class) {
                 if (INSTANCE == null) {
@@ -61,10 +61,7 @@ public abstract class AccountRoomDatabase extends RoomDatabase {
 
                 Account[] accounts = new Account[]{
                         new Account("My Gmail", "nemo.xun.jin.wang@gmail.com", "123456"),
-                        new Account("My Yahoo", "nemo.xun.jin.wang@yahoo.com", "123456"),
-                        new Account("My Twitter", "nemo.xun.jin.wang@twitter.com", "123456"),
-                        new Account("My Gmail", "nemo.xun.jin.wang@gmail.com", "123456"),
-                        new Account("My Gmail", "nemo.xun.jin.wang@gmail.com", "123456")};
+                        new Account("My Yahoo", "nemo.xun.jin.wang@yahoo.com", "123456")};
                 dao.insertAll(accounts);
 
             });

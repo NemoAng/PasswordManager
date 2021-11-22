@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +22,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.nemowang.passwordmanager.Account;
+import com.nemowang.passwordmanager.AccountDAO;
 import com.nemowang.passwordmanager.AccountListAdapter;
+import com.nemowang.passwordmanager.AccountRoomDatabase;
 import com.nemowang.passwordmanager.AccountViewModel;
 import com.nemowang.passwordmanager.R;
 import com.nemowang.passwordmanager.databinding.FragmentHomeBinding;
+
 
 public class HomeFragment extends Fragment {
 
@@ -65,7 +70,6 @@ public class HomeFragment extends Fragment {
                 final EditText mName = (EditText) mView.findViewById(R.id.edtName);
                 final EditText mPassword = (EditText) mView.findViewById(R.id.edtPass);
 
-
                 Button mOk = (Button) mView.findViewById(R.id.save);
                 Button mCancel = (Button) mView.findViewById(R.id.cancel);
                 Button mPaste = (Button) mView.findViewById(R.id.paste);
@@ -78,12 +82,18 @@ public class HomeFragment extends Fragment {
                 mOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
-                        if (mName.getText().toString().isEmpty() && mPassword.getText().toString().isEmpty()) {
+                        if (mTitle.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()) {
                             Toast.makeText(getActivity(), "Title and password must be provided.", Toast.LENGTH_SHORT).show();
                         } else {
-//
+                            com.nemowang.passwordmanager.Account account = new com.nemowang.passwordmanager.Account(
+                                    mTitle.getText().toString(),
+                                    mName.getText().toString(),
+                                    mPassword.getText().toString());
 
-
+//                            AccountRoomDatabase database = AccountRoomDatabase.getDatabase(getActivity());
+//                            AccountDAO dao = database.accountDAO();
+//                            dao.insert(account);
+                            new SaveAccount().execute(account);
 
                             timerDialog.dismiss();
                         }
@@ -139,6 +149,17 @@ public class HomeFragment extends Fragment {
         mAccountViewModel.getAllAccounts().observe(getActivity(), adapter::submitList);
 
         return root;
+    }
+
+    private class SaveAccount extends AsyncTask<Account, Void, Void> {
+        @Override
+        protected Void doInBackground(Account... accounts) {
+            AccountRoomDatabase database = AccountRoomDatabase.getDatabase(getActivity());
+            AccountDAO dao = database.accountDAO();
+            dao.insert(accounts[0]);
+
+            return null;
+        }
     }
 
     @Override

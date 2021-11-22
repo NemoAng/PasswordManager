@@ -34,7 +34,11 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_item, parent, false);
 
-//        view.setBackgroundResource(R.drawable.pass_text_bg_purple);
+        View nextChild1 = ((ViewGroup)view).getChildAt(0);
+        View nextChild2 = ((ViewGroup)nextChild1).getChildAt(0);
+        MainActivity.setBackgroundResource(nextChild2);
+
+//        nextChild2.setBackgroundResource(R.drawable.pass_text_bg_purple);
 
         return new AccountViewHolder(view);
     }
