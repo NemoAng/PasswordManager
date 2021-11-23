@@ -60,8 +60,8 @@ public abstract class AccountRoomDatabase extends RoomDatabase {
                 dao.deleteAll();
 
                 Account[] accounts = new Account[]{
-                        new Account("My Gmail", "nemo.xun.jin.wang@gmail.com", "123456"),
-                        new Account("My Yahoo", "nemo.xun.jin.wang@yahoo.com", "123456")};
+                        new Account("My Gmail", "nemo.xun.jin.wang@gmail.com", "gmail_password123"),
+                        new Account("My Yahoo", "nemo.xun.jin.wang@yahoo.com", "yahoo_password456")};
                 dao.insertAll(accounts);
 
             });

@@ -24,6 +24,7 @@
 
             android:onClick="onAccountClick"
 
+
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:orientation="vertical" >
@@ -36,6 +37,7 @@
                 android:singleLine="true"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
                 android:text="Title"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -46,6 +48,7 @@
                 android:layout_gravity="center"
                 android:singleLine="true"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:textColor="@color/white"
                 android:text="Name"
                 android:textSize="15sp"
                 android:textStyle="bold" />
