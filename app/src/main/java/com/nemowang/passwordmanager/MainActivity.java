@@ -1,5 +1,8 @@
 package com.nemowang.passwordmanager;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +10,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public static String SETTING_THEME;
     public static Boolean SETTING_PASS_NUM,SETTING_PASS_LOW, SETTING_PASS_UPP,
             SETTING_PASS_BEG, SETTING_PASS_SYM, SETTING_PASS_SIM,SETTING_PASS_DUP, SETTING_PASS_SEQ;
+
+    private final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.PASS_COPY_LABEL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setTheme(){
+    private void setTheme(){
 
         switch (SETTING_THEME) {
             case "Red":
@@ -231,4 +239,38 @@ public class MainActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item); // yes
         return false; // yes
     }
+
+    public void onAccountClick__(View view) {
+        Toast.makeText(this, "Account name copied.", Toast.LENGTH_SHORT).show();
+
+        View v1 = ((ViewGroup)view).getChildAt(0);
+        View v2 = ((ViewGroup)view).getChildAt(1);
+        View v3 = ((ViewGroup)view).getChildAt(2);
+
+        String title = ((TextView)v1).getText().toString();
+        String name = ((TextView)v2).getText().toString();
+        String pass = ((TextView)v3).getText().toString();
+
+
+        Log.d("NEMO_DBG", title + "--" + name + "::" + pass);
+    }
+
+    public void onAccountClick(View view) {
+//        Toast.makeText(this, "Account name copied.", Toast.LENGTH_SHORT).show();
+
+//        View v1 = ((ViewGroup)view).getChildAt(0);
+        View v2 = ((ViewGroup)view).getChildAt(1);
+//        View v3 = ((ViewGroup)view).getChildAt(2);
+
+//        String title = ((TextView)v1).getText().toString();
+        String name = ((TextView)v2).getText().toString();
+//        String pass = ((TextView)v3).getText().toString();
+
+        ClipboardManager cbManager =  (ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(PASS_COPY_LABEL, name);
+        cbManager.setPrimaryClip(clip);
+
+        Toast.makeText(this, "Account name copied.", Toast.LENGTH_SHORT).show();
+    }
+
 }
