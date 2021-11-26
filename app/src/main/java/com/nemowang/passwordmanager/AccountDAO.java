@@ -13,6 +13,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -35,15 +36,19 @@ public interface AccountDAO {
     @Query("SELECT * FROM table_account WHERE title LIKE :title")
     Account findByName(String title);
 
-    @Insert
-    void insertAll(Account... accounts);
+
+    @Update
+    void update(Account Account);
 
     @Delete
-    void delete(Account account);
+    void delete(Account account);//++
 
     @Insert
-    void insert(Account account);
+    void insert(Account account);//++
 
-    @Query("DELETE FROM table_account")
+    @Insert
+    void insertAll(Account... accounts);//++
+
+    @Query("DELETE FROM table_account")//++
     void deleteAll();
 }

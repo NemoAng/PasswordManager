@@ -44,6 +44,11 @@ public class Account {
     }
 
     @NonNull
+    public Integer getID() {
+        return this.uid;
+    }
+
+    @NonNull
     public String getAccount___() {
         return this.title + " " + this.name;
     }

@@ -1,13 +1,16 @@
 package com.nemowang.passwordmanager.ui.home;
 
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,6 +44,8 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        Log.d("NEMO_DBG", "HomeFragment -> onCreateView");
+
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
@@ -54,9 +60,9 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
-
         FloatingActionButton fab = root.findViewById(R.id.fab_add);
         fab.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
@@ -76,9 +82,10 @@ public class HomeFragment extends Fragment {
 
                 //  Create the AlertDialog using everything we needed from above
                 mBuilder.setView(mView);
-                final AlertDialog timerDialog = mBuilder.create();
+                final AlertDialog accountAddDialog = mBuilder.create();
 
                 //  Set Listener for the OK Button
+                mOk.setOnTouchListener(btnEffect);
                 mOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
@@ -89,26 +96,23 @@ public class HomeFragment extends Fragment {
                                     mTitle.getText().toString(),
                                     mName.getText().toString(),
                                     mPassword.getText().toString());
-
-//                            AccountRoomDatabase database = AccountRoomDatabase.getDatabase(getActivity());
-//                            AccountDAO dao = database.accountDAO();
-//                            dao.insert(account);
                             new SaveAccount().execute(account);
-
-                            timerDialog.dismiss();
+                            accountAddDialog.dismiss();
                         }
                     }
                 });
 
                 //  Set Listener for the CANCEL Button
+                mCancel.setOnTouchListener(btnEffect);
                 mCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
-                        timerDialog.dismiss();
+                        accountAddDialog.dismiss();
                     }
                 });
 
                 //
+                mPaste.setOnTouchListener(btnEffect);
                 mPaste.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
@@ -121,8 +125,7 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
-
-                timerDialog.show();
+                accountAddDialog.show();
             }
         });
 
@@ -151,6 +154,98 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+//    public HomeFragment(int contentLayoutId) {
+//        super(contentLayoutId);
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ HomeFragment");
+//    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onAttach");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onCreate");
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onViewCreated");
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onViewStateRestored");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onDestroy");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onDetach");
+    }
+
+    @Override
+    public void onPrimaryNavigationFragmentChanged(boolean isPrimaryNavigationFragment) {
+        super.onPrimaryNavigationFragmentChanged(isPrimaryNavigationFragment);
+        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onPrimaryNavigationFragmentChanged");
+    }
+
+
+    private final View.OnTouchListener btnEffect = new View.OnTouchListener() {
+        @SuppressLint("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    v.setAlpha(0.6F);
+                    break;
+                }
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL: {
+                    v.setAlpha(1F);
+                    break;
+                }
+            }
+            v.invalidate();
+            return false;
+        }
+    };
+
     private class SaveAccount extends AsyncTask<Account, Void, Void> {
         @Override
         protected Void doInBackground(Account... accounts) {
@@ -160,12 +255,27 @@ public class HomeFragment extends Fragment {
 
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            RecyclerView rcv = getActivity().findViewById(R.id.recyclerview);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            layoutManager.setStackFromEnd(true);
+            rcv.setLayoutManager(layoutManager);
+
+
+            rcv.setHasFixedSize(true);
+//            rcv.scrollToPosition(rcv.getAdapter().getItemCount());
+            rcv.smoothScrollToPosition(rcv.getAdapter().getItemCount());
+        }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+
+        Log.d("NEMO_DBG", "HomeFragment -> onDestroyView");
     }
 
 }

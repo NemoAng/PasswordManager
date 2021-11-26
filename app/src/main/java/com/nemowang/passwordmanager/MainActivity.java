@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -40,19 +42,20 @@ public class MainActivity extends AppCompatActivity {
     public static Boolean SETTING_PASS_NUM,SETTING_PASS_LOW, SETTING_PASS_UPP,
             SETTING_PASS_BEG, SETTING_PASS_SYM, SETTING_PASS_SIM,SETTING_PASS_DUP, SETTING_PASS_SEQ;
 
-    private final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.PASS_COPY_LABEL";
+    public static final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.PASS_COPY_LABEL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(savedInstanceState == null) {
+            Log.d("NEMO_DBG2", "MainActivity ------------------ onCreate");
+        } else {
+            Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onCreate");
+//            outState.putInt("WHAT_EVER", 1000);
+            Log.d("NEMO_DBG2", String.valueOf(savedInstanceState.getInt("WHAT_EVER")));
+        }
         getSettings();
         this.setTheme();
         super.onCreate(savedInstanceState);
-
-        if(savedInstanceState == null) {
-            Log.d("NEMO_DBG", "------------------");
-        } else {
-            Log.d("NEMO_DBG", "++++++++++++++++++");
-        }
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        // QQQQ
+//        // QQQQ
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @SuppressLint("NonConstantResourceId")
 //            @Override
@@ -107,25 +110,103 @@ public class MainActivity extends AppCompatActivity {
 //                        navController.navigate(R.id.nav_setting);
 //                        break;
 //                }
-//                return true;
+//                binding.drawerLayout.closeDrawer(GravityCompat.START, true);
+//                return false;
+////                return true;
 //            }
 //        });
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d("NEMO_DBG2", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onSaveInstanceState");
+
+        outState.putInt("WHAT_EVER", 1000);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState");
+    }
+
+    @Override
+    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState 2");
+    }
+
+
+    @Override
     protected void onStart() {
         super.onStart();
-        Log.d("NEMO_DBG", "++++++++++++++++++ onStart");
+        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onStart");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("NEMO_DBG", "++++++++++++++++++ onPause");
+        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onPause");
 
 //        Log.d("NEMO_DBG", "Current Navi Item: " + getViewModelStore().);
     }
-    
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onPostCreate");
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onPostResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onDestroy");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onPause");
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onResumeFragments");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onBackPressed");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onCreate 2");
+    }
+
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onRestart");
+    }
 
     public static void setBackgroundResource(View view){
 //        LinearLayout nav_header = (LinearLayout)findViewById(R.id.nav_header);

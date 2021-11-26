@@ -20,7 +20,7 @@ public class AccountListAdapter extends ListAdapter<Account, AccountViewHolder> 
     @Override
     public void onBindViewHolder(AccountViewHolder holder, int position) {
         Account current = getItem(position);
-        holder.bind(current.getTitle(), current.getName(), current.getPassword());
+        holder.bind(current.getTitle(), current.getName(), current.getPassword(), current.getID());
     }
 
     public static class AccountDiff extends DiffUtil.ItemCallback<Account> {
