@@ -75,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void setTheme(){
-        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
+//        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
 

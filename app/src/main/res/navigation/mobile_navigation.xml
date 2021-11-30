@@ -29,3 +29,6 @@
         android:label="@string/menu_setting"
         tools:layout="@layout/fragment_setting" />
 </navigation>
+
+
+<!--    tools:layout="@layout/fragment_setting"-->

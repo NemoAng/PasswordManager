@@ -56,6 +56,7 @@ public class PassgenFragment extends Fragment {
     private PassgenViewModel passgenViewModel;
     private FragmentPassgenBinding binding;
     View root;
+    private boolean spinnerTouched = false;
 
 //    @Override
 //    public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -122,18 +123,28 @@ public class PassgenFragment extends Fragment {
         spinner.setSelected(false);  // must
         spinner.setSelection(position,true);  //must
 
+        spinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                spinnerTouched = true;
+                return false;
+            }
+        });
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences preferences = getActivity().getSharedPreferences("pass_length", Context.MODE_PRIVATE);
+                if(spinnerTouched) {
+                    SharedPreferences preferences = getActivity().getSharedPreferences("pass_length", Context.MODE_PRIVATE);
 
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("PASS_LEN_POSITION", position);
-                if (editor.commit()) {
-                    passwordLen = PasswordLength(position);//position + DEFAULT_PASS_LEN;
-                    Log.d("NEMO_DBG", "Write successfully.");
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("PASS_LEN_POSITION", position);
+                    if (editor.commit()) {
+                        passwordLen = PasswordLength(position);//position + DEFAULT_PASS_LEN;
+                    }
+                    tvPassTxt.setText(null);
+                    spinnerTouched = false;
                 }
-                tvPassTxt.setText(null);
             }
 
             @Override
