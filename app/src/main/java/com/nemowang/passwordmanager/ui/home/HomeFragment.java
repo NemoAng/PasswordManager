@@ -2,9 +2,6 @@ package com.nemowang.passwordmanager.ui.home;
 
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipDescription;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,6 +28,8 @@ import com.nemowang.passwordmanager.AccountDAO;
 import com.nemowang.passwordmanager.AccountListAdapter;
 import com.nemowang.passwordmanager.AccountRoomDatabase;
 import com.nemowang.passwordmanager.AccountViewModel;
+import com.nemowang.passwordmanager.MainActivity;
+import com.nemowang.passwordmanager.PasswordGenHelper;
 import com.nemowang.passwordmanager.R;
 import com.nemowang.passwordmanager.databinding.FragmentHomeBinding;
 
@@ -69,12 +68,13 @@ public class HomeFragment extends Fragment {
 
                 mBuilder.setTitle("Input Your Account");
                 //  Inflate the Layout Resource file you created in Step 1
-                View mView = getLayoutInflater().inflate(R.layout.account_input, null);
+                View mView = getLayoutInflater().inflate(R.layout.account_input_v2, null);
 
                 //  Get View elements from Layout file. Be sure to include inflated view name (mView)
                 final EditText mTitle = (EditText) mView.findViewById(R.id.edtTitle);
                 final EditText mName = (EditText) mView.findViewById(R.id.edtName);
                 final EditText mPassword = (EditText) mView.findViewById(R.id.edtPass);
+                final EditText mPasswordLen = (EditText) mView.findViewById(R.id.edtPassLen);
 
                 Button mOk = (Button) mView.findViewById(R.id.save);
                 Button mCancel = (Button) mView.findViewById(R.id.cancel);
@@ -89,16 +89,22 @@ public class HomeFragment extends Fragment {
                 mOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
-                        if (mTitle.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()) {
-                            Toast.makeText(getActivity(), "Title and password must be provided.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            com.nemowang.passwordmanager.Account account = new com.nemowang.passwordmanager.Account(
-                                    mTitle.getText().toString(),
-                                    mName.getText().toString(),
-                                    mPassword.getText().toString());
-                            new SaveAccount().execute(account);
-                            accountAddDialog.dismiss();
+                        if (mTitle.getText().toString().trim().isEmpty()){
+                            Toast.makeText(v.getContext(), "Account title empty.", Toast.LENGTH_SHORT).show();
+                            return;
                         }
+
+                        if (mName.getText().toString().trim().isEmpty()){
+                            Toast.makeText(v.getContext(), "Account empty.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        com.nemowang.passwordmanager.Account account = new com.nemowang.passwordmanager.Account(
+                                mTitle.getText().toString(),
+                                mName.getText().toString(),
+                                mPassword.getText().toString());
+                        new SaveAccount().execute(account);
+                        accountAddDialog.dismiss();
                     }
                 });
 
@@ -115,14 +121,36 @@ public class HomeFragment extends Fragment {
                 mPaste.setOnTouchListener(btnEffect);
                 mPaste.setOnClickListener(new View.OnClickListener() {
                     @Override
+//                    public void onClick (View view) {
+//                        ClipboardManager clipboard =  (ClipboardManager)root.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+//
+//                        if(clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+//                            ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+//                            mPassword.setText(item.getText());
+//                        }
+//                    }
                     public void onClick (View view) {
-                        ClipboardManager clipboard =  (ClipboardManager)root.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                        int pass_len = 0;
 
-                        if(clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
-                            ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
-                            // Gets the clipboard as text.
-                            mPassword.setText(item.getText());
+                        try{
+                            pass_len = Integer.parseInt(mPasswordLen.getText().toString());
+                        } catch (NumberFormatException e) {
+                            Toast.makeText(v.getContext(), "Password length error.", Toast.LENGTH_SHORT).show();
+                            return;
                         }
+
+                        String password = PasswordGenHelper.Password(view, pass_len,
+                                MainActivity.SETTING_PASS_UPP,
+                                MainActivity.SETTING_PASS_LOW,
+                                MainActivity.SETTING_PASS_NUM,
+                                MainActivity.SETTING_PASS_SYM,
+                                MainActivity.SETTING_PASS_DUP,
+                                MainActivity.SETTING_PASS_SEQ,
+                                MainActivity.SETTING_PASS_BEG,
+                                MainActivity.SETTING_PASS_SIM
+                        );
+
+                        mPassword.setText(password);
                     }
                 });
                 accountAddDialog.show();

@@ -1,13 +1,18 @@
 package com.nemowang.passwordmanager;
 
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+
+import com.nemowang.passwordmanager.ui.setting.SettingFragment;
 
 public class SettingsActivity extends AppCompatActivity {
     public static final String SW1 = "switch_preference_1";
@@ -39,16 +44,21 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.settings_activity);
-        if (savedInstanceState == null) {
+
+//        if (savedInstanceState == null) {
+        if (true) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.settings, new SettingsFragment())
+//                    .replace(R.id.settings, new SettingsFragment())
+                    .replace(R.id.settings, new SettingFragment())
                     .commit();
         }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        Log.d("NEMO_DBG", "SettingsActivity->onCreate");
     }
 
     @Override
@@ -56,8 +66,10 @@ public class SettingsActivity extends AppCompatActivity {
         super.onStart();
 
         PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
+
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
+
         sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
@@ -72,6 +84,53 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Log.d("NEMO_DBG", "SettingsActivity->onStart");
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("NEMO_DBG", "SettingsActivity->onConfigurationChanged");
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Log.d("NEMO_DBG", "SettingsActivity->onPostResume");
+    }
+
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+        Log.d("NEMO_DBG", "SettingsActivity->onContentChanged");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("NEMO_DBG", "SettingsActivity->onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("NEMO_DBG", "SettingsActivity->onResume");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+    }
+
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     public void setTheme(){
@@ -103,10 +162,10 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat {
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.root_preferences, rootKey);
-        }
-    }
+//    public static class SettingsFragment extends PreferenceFragmentCompat {
+//        @Override
+//        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+//            setPreferencesFromResource(R.xml.root_preferences, rootKey);
+//        }
+//    }
 }

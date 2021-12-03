@@ -84,13 +84,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_password" />
-
         </ScrollView>
-
-
-
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -106,7 +101,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="0dp"
-            android:background="@drawable/pass_gen_buttonshape"
+            android:background="@drawable/pass_gen_btn_shape"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/generate" />
@@ -119,7 +114,7 @@
             android:gravity="center"
             android:padding="0dp"
             android:layout_weight="1"
-            android:background="@drawable/pass_gen_buttonshape"
+            android:background="@drawable/pass_gen_btn_shape"
             android:text="@string/copy" />
     </LinearLayout>
 

@@ -24,5 +24,10 @@
     <string name="no_sequential">无连续字符</string>
     <string name="inc_symbol">包含符号</string>
     <string name="no_similiar">无相近字符</string>
+    <string name="paste">粘贴</string>
+    <string name="action_search">搜索</string>
+    <string name="search_account">搜索账号</string>
+    <string name="password_length">密码长度</string>
+    <string name="password_length_want">你想要的密码长度</string>
 
 </resources>

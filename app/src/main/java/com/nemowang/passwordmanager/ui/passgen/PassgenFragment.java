@@ -64,6 +64,7 @@ public class PassgenFragment extends Fragment {
 //        outState.putString(PASS_LEN_KEY, "50");
 //    }
 
+    @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

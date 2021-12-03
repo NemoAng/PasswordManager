@@ -103,9 +103,10 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 }
             };
 
+            //This is a copy/paste version(original)
             @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public void onDoubleClick(View v) {
+//            @Override
+            public void onDoubleClick_V0(View v) {
                 // double-click code that is executed if the user double-taps
 //                Log.d("NEMO_DBG", "Double clicked.");
 
@@ -130,7 +131,8 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
                 LayoutInflater inflater = (LayoutInflater)v.getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 
-                View mView = inflater.inflate(R.layout.account_input, null);
+//                View mView = inflater.inflate(R.layout.account_input_v1, null);
+                View mView = inflater.inflate(R.layout.account_input_v2, null);
 
 //                MainActivity.setBackgroundResource(mView);
 
@@ -204,6 +206,136 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
             }
 
 
+            //This is a generating version(original->reviewed)
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public void onDoubleClick(View v) {
+                // double-click code that is executed if the user double-taps
+//                Log.d("NEMO_DBG", "Double clicked.");
+
+                View v1 = ((ViewGroup)v).getChildAt(0);
+                View v2 = ((ViewGroup)v).getChildAt(1);
+                View v3 = ((ViewGroup)v).getChildAt(2);
+                View v4 = ((ViewGroup)v).getChildAt(3);
+
+                String title = ((TextView)v1).getText().toString();
+                String name = ((TextView)v2).getText().toString();
+                String pass = ((TextView)v3).getText().toString();
+
+                String id = ((TextView)v4).getText().toString();
+
+                Log.d("NEMO_DBG_X", id);
+
+
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
+
+                mBuilder.setTitle("Input Your Account");
+                //  Inflate the Layout Resource file you created in Step 1
+
+                //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
+                LayoutInflater inflater = (LayoutInflater)v.getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+
+//                View mView = inflater.inflate(R.layout.account_input_v1, null);
+                View mView = inflater.inflate(R.layout.account_input_v2, null);
+
+//                MainActivity.setBackgroundResource(mView);
+
+                //  Get View elements from Layout file. Be sure to include inflated view name (mView)
+                final EditText mTitle = (EditText) mView.findViewById(R.id.edtTitle);
+                final EditText mName = (EditText) mView.findViewById(R.id.edtName);
+                final EditText mPassword = (EditText) mView.findViewById(R.id.edtPass);
+
+                final EditText mPasswordLen = (EditText) mView.findViewById(R.id.edtPassLen);
+
+                mTitle.setText(title);
+                mName.setText(name);
+                mPassword.setText(pass);
+
+                Button mOk = (Button) mView.findViewById(R.id.save);
+                Button mCancel = (Button) mView.findViewById(R.id.cancel);
+                Button mGenerate = (Button) mView.findViewById(R.id.paste);
+
+                //  Create the AlertDialog using everything we needed from above
+                mBuilder.setView(mView);
+                final AlertDialog accountAddDialog = mBuilder.create();
+
+                //  Set Listener for the OK Button
+                mOk.setOnTouchListener(btnEffect);
+                mOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick (View view) {
+                        if (mTitle.getText().toString().trim().isEmpty()){
+                            Toast.makeText(v.getContext(), "Account title empty.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (mName.getText().toString().trim().isEmpty()){
+                            Toast.makeText(v.getContext(), "Account empty.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+//                        if (mTitle.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()) {
+//                            Toast.makeText(v.getContext(), "Title and password must be provided.", Toast.LENGTH_SHORT).show();
+//                        } else {
+                            com.nemowang.passwordmanager.Account account = new com.nemowang.passwordmanager.Account(
+                                    mTitle.getText().toString(),
+                                    mName.getText().toString(),
+                                    mPassword.getText().toString());
+
+                            account.uid = Integer.parseInt(id);
+
+                            new UpdateAccount().execute(view, account);
+
+//                            AccountRoomDatabase database = AccountRoomDatabase.getDatabase(mOk.getContext());
+//                            AccountDAO dao = database.accountDAO();
+//                            dao.insert(account);
+
+                            accountAddDialog.dismiss();
+//                        }
+                    }
+                });
+
+                //  Set Listener for the CANCEL Button
+                mCancel.setOnTouchListener(btnEffect);
+                mCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick (View view) {
+                        accountAddDialog.dismiss();
+                    }
+                });
+
+                //
+                mGenerate.setOnTouchListener(btnEffect);
+                mGenerate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick (View view) {
+                        int pass_len = 0;
+
+                        try{
+                            pass_len = Integer.parseInt(mPasswordLen.getText().toString());
+                        } catch (NumberFormatException e) {
+
+                            Toast.makeText(v.getContext(), "Password length error.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        String password = PasswordGenHelper.Password(view, pass_len,
+                                MainActivity.SETTING_PASS_UPP,
+                                MainActivity.SETTING_PASS_LOW,
+                                MainActivity.SETTING_PASS_NUM,
+                                MainActivity.SETTING_PASS_SYM,
+                                MainActivity.SETTING_PASS_DUP,
+                                MainActivity.SETTING_PASS_SEQ,
+                                MainActivity.SETTING_PASS_BEG,
+                                MainActivity.SETTING_PASS_SIM
+                        );
+
+                        mPassword.setText(password);
+                    }
+                });
+                accountAddDialog.show();
+            }
+
             @Override
             public void onSingleClickShit(View v) {
                 // double-click code that is executed if the user double-taps
@@ -227,7 +359,6 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
             }
 
         });
-
 
         nextChild2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

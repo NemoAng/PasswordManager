@@ -3,23 +3,17 @@ package com.nemowang.passwordmanager.ui.setting;
 //THEME LIST->PURPLE
 //DROPDOWN->INPUT
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceFragmentCompat;
 
+import com.nemowang.passwordmanager.R;
 import com.nemowang.passwordmanager.databinding.FragmentSettingBinding;
 
 
-public class SettingFragment extends Fragment {
+public class SettingFragment extends PreferenceFragmentCompat {
 
     private Button btnSetting;
 
@@ -27,23 +21,31 @@ public class SettingFragment extends Fragment {
     private FragmentSettingBinding binding;
 
 
+//    @Override
+//    public void onInflate(@NonNull Context context, @NonNull AttributeSet attrs, @Nullable Bundle savedInstanceState) {
+//        super.onInflate(context, attrs, savedInstanceState);
+//    }
+
     @Override
-    public void onInflate(@NonNull Context context, @NonNull AttributeSet attrs, @Nullable Bundle savedInstanceState) {
-        super.onInflate(context, attrs, savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey);
+
+        ListPreference lpTheme = (ListPreference) findPreference ("setting_theme");
+        lpTheme.setTitle(lpTheme.getValue());
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        settingViewModel =
-                new ViewModelProvider(this).get(SettingViewModel.class);
+//    public View onCreateView(@NonNull LayoutInflater inflater,
+//                             ViewGroup container, Bundle savedInstanceState) {
+//        settingViewModel =
+//                new ViewModelProvider(this).get(SettingViewModel.class);
 
 //        binding = FragmentSettingBinding.inflate(inflater, container, false);
 
 
-        binding = FragmentSettingBinding.inflate(inflater, container, false);
-
-
-        View root = binding.getRoot();
+//        binding = FragmentSettingBinding.inflate(inflater, container, false);
+//
+//
+//        View root = binding.getRoot();
 
 //        final TextView textView = binding.textSetting;
 //        settingViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -62,8 +64,8 @@ public class SettingFragment extends Fragment {
 //            }
 //        });
 
-        return root;
-    }
+//        return root;
+//    }
 
     @Override
     public void onDestroyView() {

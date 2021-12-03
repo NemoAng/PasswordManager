@@ -37,8 +37,8 @@
             android:defaultValue="true"
             android:key="setting_pass_symbol"
             android:title="@string/inc_symbol"
-            app:summaryOn="@string/pass_with_symbbols"
-            app:summaryOff="@string/pass_without_symbbols" />
+            app:summaryOff="@string/pass_without_symbbols"
+            app:summaryOn="@string/pass_with_symbbols" />
 
 
         <CheckBoxPreference
@@ -62,27 +62,24 @@
     <PreferenceCategory app:title="Encryption Methods">
 
         <SwitchPreference
+            android:title="MD5"
             app:defaultValue="true"
-            app:key="switch_preference_1"
-            android:title="MD5" />
+            app:key="switch_preference_1" />
 
         <SwitchPreference
+            android:title="BASE64"
             app:defaultValue="false"
-            app:key="switch_preference_2"
-            android:title="BASE64" />
+            app:key="switch_preference_2" />
 
         <SwitchPreference
+            android:title="DES"
             app:defaultValue="false"
-            app:key="switch_preference_3"
-            android:title="DES" />
+            app:key="switch_preference_3" />
 
         <SwitchPreference
+            android:title="RSA2048"
             app:defaultValue="false"
-            app:key="switch_preference_3"
-            android:title="RSA2048" />
+            app:key="switch_preference_4" />
     </PreferenceCategory>
-
-
-
 
 </PreferenceScreen>

@@ -227,6 +227,8 @@
     <string name="password" translatable="false">Password:</string>
     <string name="paste">Paste</string>
     <string name="action_search">Search</string>
-    <string name="action_hive">Test😁</string>
+    <string name="action_hive" translatable="false">Test😁</string>
     <string name="search_account">Search account</string>
+    <string name="password_length">Length:</string>
+    <string name="password_length_want">Password length</string>
 </resources>
