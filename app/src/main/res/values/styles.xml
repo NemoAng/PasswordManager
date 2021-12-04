@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="word_title_hahaha">
+    <style name="word_title_try">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:background">@android:color/holo_orange_light</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+    <style name="CourierNew" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/courbd</item>
+    </style>
+    <style name="CourierNewI" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/courbi</item>
+    </style>
+
+    <style name="NavigationMenuItemTextAppearance">
+        <item name="android:ellipsize">end</item>
+<!--        <item name="android:maxLines">2</item>-->
+<!--        <item name="android:singleLine">false</item>-->
     </style>
 </resources>

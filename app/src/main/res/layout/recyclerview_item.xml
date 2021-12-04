@@ -24,7 +24,6 @@
 
             android:onClick="onAccountClick"
 
-
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:orientation="vertical" >
@@ -50,7 +49,6 @@
                 android:singleLine="true"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
                 android:textColor="@color/white"
-
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
