@@ -29,6 +29,12 @@
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
+    <Button
+        android:id="@+id/button_nav_xxxx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
@@ -37,4 +43,8 @@
         android:singleLine="false"
         android:maxLines="2"
         android:text="@string/nav_header_subtitle" />
+
+
+
+
 </LinearLayout>

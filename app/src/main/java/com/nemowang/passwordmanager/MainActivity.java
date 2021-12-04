@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.nemowang.passwordmanager.databinding.ActivityMainBinding;
 
@@ -35,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+    private  Button btnNav;
+
     static String ls;
     static Set<String> ms;
 
@@ -44,14 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.PASS_COPY_LABEL";
 
+    private static final int RC_SIGN_IN = 007;
+    private GoogleSignInClient mGoogleSignInClient;
+    private GoogleSignInOptions mGoogleSignInOptions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(savedInstanceState == null) {
-            Log.d("NEMO_DBG2", "MainActivity ------------------ onCreate");
+            Log.d("NEMO_DBG", "MainActivity ------------------ onCreate");
         } else {
-            Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onCreate");
-//            outState.putInt("WHAT_EVER", 1000);
-            Log.d("NEMO_DBG2", String.valueOf(savedInstanceState.getInt("WHAT_EVER")));
+            Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onCreate");
         }
         getSettings();
         this.setTheme();
@@ -86,6 +97,30 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
+        View headerView = navigationView.getHeaderView(0);
+        btnNav = headerView.findViewById(R.id.button_nav_xxxx);
+        btnNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                v.setVisibility(View.GONE);
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+
+        if(savedInstanceState == null) {
+            mGoogleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.AUTH_ID_WEB))
+                    .requestEmail()
+                    .build();
+
+            mGoogleSignInClient = GoogleSignIn.getClient(MainActivity.this, mGoogleSignInOptions);
+
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            updateUI(account);
+        }
+
+
 //        // QQQQ
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @SuppressLint("NonConstantResourceId")
@@ -115,6 +150,43 @@ public class MainActivity extends AppCompatActivity {
 ////                return true;
 //            }
 //        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            // Signed in successfully, show authenticated UI.
+            updateUI(account);
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("NEMO_DBG", "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }
+
+    private void updateUI(GoogleSignInAccount account){
+        if (account != null) {
+            Log.d("NEMO_DBG", account.getEmail());
+            Log.d("NEMO_DBG", account.getDisplayName());
+            Log.d("NEMO_DBG", account.getPhotoUrl().toString());
+        }else {
+            Toast.makeText(this, "Sign in with Google failed...", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
