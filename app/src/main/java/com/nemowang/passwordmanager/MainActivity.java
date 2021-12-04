@@ -255,8 +255,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getSettings(){
-//        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
-
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
 

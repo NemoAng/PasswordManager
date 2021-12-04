@@ -58,14 +58,27 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
+
+//        SharedPreferences sharedPref =
+//                PreferenceManager.getDefaultSharedPreferences(this);
+//
+//        sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+//            @Override
+//            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//
+//                if(key.equals(SETTING_THEME)) {
+//                    recreate();
+//                 }
+//            }
+//        });
+
         Log.d("NEMO_DBG", "SettingsActivity->onCreate");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
 
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
@@ -75,12 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
                 if(key.equals(SETTING_THEME)) {
-//                    final String theme = sharedPreferences.getString
-//                            (SETTING_THEME, "-1");
-                    recreate();
-                    Log.d("NEMO_DBG","Theme changing...");
-                }else {
-                    Log.d("NEMO_DBG","Settings changing");
+                    SettingsActivity.this.recreate();
                 }
             }
         });

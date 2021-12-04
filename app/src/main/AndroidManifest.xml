@@ -11,10 +11,6 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Red_700_900">
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"

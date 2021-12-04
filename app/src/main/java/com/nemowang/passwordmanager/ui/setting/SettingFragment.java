@@ -3,19 +3,24 @@ package com.nemowang.passwordmanager.ui.setting;
 //THEME LIST->PURPLE
 //DROPDOWN->INPUT
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
+import com.nemowang.passwordmanager.MainActivity;
 import com.nemowang.passwordmanager.R;
+import com.nemowang.passwordmanager.SettingsActivity;
 import com.nemowang.passwordmanager.databinding.FragmentSettingBinding;
 
 
 public class SettingFragment extends PreferenceFragmentCompat {
-
     private Button btnSetting;
+    ListPreference lpTheme;
 
     private SettingViewModel settingViewModel;
     private FragmentSettingBinding binding;
@@ -30,8 +35,53 @@ public class SettingFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
-        ListPreference lpTheme = (ListPreference) findPreference ("setting_theme");
+        lpTheme = (ListPreference) findPreference (SettingsActivity.SETTING_THEME);
         lpTheme.setTitle(lpTheme.getValue());
+
+        lpTheme.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                lpTheme.setTitle(newValue.toString());
+
+                if(getActivity().getClass() == MainActivity.class){
+                    getActivity().recreate();
+                }
+
+                return true;//yes to settings activity
+            }
+        });
+
+
+        SharedPreferences sharedPref =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                if(!key.equals(SettingsActivity.SETTING_THEME)) {
+
+
+                    MainActivity.SETTING_PASS_NUM = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_NUM, false);
+                    MainActivity.SETTING_PASS_LOW = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_LOW, false);
+                    MainActivity.SETTING_PASS_UPP = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_UPP, false);
+                    MainActivity.SETTING_PASS_BEG = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_BEG, false);
+                    MainActivity.SETTING_PASS_SYM = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_SYM, false);
+                    MainActivity.SETTING_PASS_SIM = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_SIM, false);
+                    MainActivity.SETTING_PASS_DUP = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_DUP, false);
+                    MainActivity.SETTING_PASS_SEQ = sharedPref.getBoolean
+                            (SettingsActivity.SETTING_PASS_SEQ, false);
+
+                }
+            }
+        });
+
     }
 
 //    public View onCreateView(@NonNull LayoutInflater inflater,

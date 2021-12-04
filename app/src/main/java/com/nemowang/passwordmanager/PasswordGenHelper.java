@@ -92,8 +92,8 @@ public class PasswordGenHelper {
         if(SETTING_PASS_DUP__) {
             int src_len = sources.length();
 
-            Log.d("NEMO_DBG_X", String.valueOf(src_len));
-            Log.d("NEMO_DBG_X", String.valueOf(password_len));
+//            Log.d("NEMO_DBG_X", String.valueOf(src_len));
+//            Log.d("NEMO_DBG_X", String.valueOf(password_len));
 
             if(src_len < password_len)
             {
