@@ -6,27 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/login_pass__"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="232dp"
+            android:hint="Password required"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/login_btn__"
+            tools:layout_editor_absoluteX="88dp" />
+
+        <Button
+            android:id="@+id/login_btn__"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginVertical="@dimen/activity_vertical_margin"
+
+            android:background="@drawable/pass_gen_btn_shape"
+            android:gravity="center"
+            android:padding="0dp"
+            android:singleLine="true"
+            android:text="Login"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="136dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageViewFP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/login_my"
-        android:layout_width="match_parent"
-        android:layout_marginVertical="@dimen/activity_vertical_margin"
-        android:text="@string/generate"
-        android:layout_height="0dp"
         android:layout_margin="16dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="0dp"
-        android:background="@drawable/pass_gen_btn_shape"
-        android:ellipsize="end"
-        android:singleLine="true" />
+        android:onClick="onFingerPrintClick"
+        android:scaleX="2"
+
+        android:scaleY="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_fingerprint_24" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

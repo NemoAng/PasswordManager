@@ -59,6 +59,16 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="Security Setting">
+        <EditTextPreference
+            android:key="setting_login_pw"
+            android:title="Login password"
+            android:persistent="true"
+            android:inputType="textWebPassword"
+            android:dialogTitle="Login Password"
+            android:defaultValue="" />
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="Encryption Methods">
 
         <SwitchPreference

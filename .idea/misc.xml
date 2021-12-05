@@ -39,7 +39,8 @@
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/access_permission.xml" value="0.1328125" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/account_input.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/account_input_v2.xml" value="0.3955119214586255" />
-        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/activity_login.xml" value="0.153125" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/activity_login__.xml" value="0.39597989949748746" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/FinalProject/PasswordManager/app/src/main/res/layout/content_main.xml" value="0.1" />
@@ -67,6 +68,8 @@
   </component>
   <component name="ProjectPlainTextFileTypeManager">
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/account_input_v1.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login__.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login__.xml" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_setting__.xml" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main__.xml" />
   </component>
@@ -79,7 +82,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.264" />
+        <option name="scale" value="0.536" />
       </ProjectState>
     </option>
   </component>
