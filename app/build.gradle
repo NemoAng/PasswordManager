@@ -60,6 +60,8 @@ dependencies {
     // Use the GPU Filters
     implementation 'jp.wasabeef.transformers:picasso-gpu:1.0.5'
 
+    implementation 'com.infideap.drawerbehavior:drawer-behavior:0.1.5'
+
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'

@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
     private SignInButton signInButton;
     private TextView tvTitle, tvName;
-    private ImageView imgView;
+    private ImageView imgView_L;
 
-    private ImageView imgView_Header;
+    private ImageView imgView_R;
 
 
     static String ls;
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_SIGN_IN = 0xf007;
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions mGoogleSignInOptions;
-    private GoogleSignInAccount accountGoogle;
     public static final int REQUEST_CODE_READ_WRITE = 0xf0f0;
 
     @Override
@@ -144,11 +143,10 @@ public class MainActivity extends AppCompatActivity {
 
         tvTitle = headerView.findViewById(R.id.tvTitle);
         tvName = headerView.findViewById(R.id.tvName);
-        imgView = headerView.findViewById(R.id.imgViewUrl);
-        imgView_Header = headerView.findViewById(R.id.imgView);
+        imgView_R = headerView.findViewById(R.id.imgViewUrl);
+        imgView_L = headerView.findViewById(R.id.imgView);
 
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-            accountGoogle = account;
             updateUI(account);
     }
 
@@ -232,21 +230,28 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     String img_path = "file:" + Environment.getExternalStorageDirectory() + "/PasswordManager/pm_pro.jpg";
 
-                    imgView.setVisibility(View.VISIBLE);
-                    signInButton.setVisibility(View.GONE);
-
-                    tvTitle.setText(account.getDisplayName());
-                    tvName.setText(account.getEmail());
-
                     Picasso.get()
                             .load(img_path)
                             .placeholder(R.mipmap.ic_launcher_round)
                             .config(Bitmap.Config.ALPHA_8)
                             .fit()
                             .transform(new CropCircleTransformation())
-                            .into(imgView);
+                            .into(imgView_L, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    imgView_R.setVisibility(View.VISIBLE);
+                                }
 
-                    Toast.makeText(this, "Done...", Toast.LENGTH_SHORT).show();
+                                @Override
+                                public void onError(Exception e) {
+                                    Log.i("NEMO_DBG_XX", e.getMessage());
+                                }
+                            });
+
+                    signInButton.setVisibility(View.GONE);
+
+                    tvTitle.setText(account.getDisplayName());
+                    tvName.setText(account.getEmail());
                 }
             }//checkPermission()
             else {
@@ -281,9 +286,11 @@ public class MainActivity extends AppCompatActivity {
                 && grantResults.length > 0
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Need do something...", Toast.LENGTH_SHORT).show();
 
-            updateUI(accountGoogle);
+            Log.e("NEMO_DBG_XX", "onRequestPermissionsResult");
+
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            updateUI(account);
         }
     }
 
