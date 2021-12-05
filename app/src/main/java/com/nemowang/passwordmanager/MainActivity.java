@@ -1,24 +1,37 @@
 package com.nemowang.passwordmanager;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,19 +43,33 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.nemowang.passwordmanager.databinding.ActivityMainBinding;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Set;
+
+import jp.wasabeef.transformers.picasso.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    private  Button btnNav;
+    private SignInButton signInButton;
+    private TextView tvTitle, tvName;
+    private ImageView imgView;
+
+    private ImageView imgView_Header;
+
 
     static String ls;
     static Set<String> ms;
@@ -53,9 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.PASS_COPY_LABEL";
 
-    private static final int RC_SIGN_IN = 007;
+    private static final int REQUEST_CODE_SIGN_IN = 0xf007;
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions mGoogleSignInOptions;
+    private GoogleSignInAccount accountGoogle;
+    public static final int REQUEST_CODE_READ_WRITE = 0xf0f0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,60 +125,31 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        mGoogleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.AUTH_ID_WEB))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(MainActivity.this, mGoogleSignInOptions);
 
         View headerView = navigationView.getHeaderView(0);
-        btnNav = headerView.findViewById(R.id.button_nav_xxxx);
-        btnNav.setOnClickListener(new View.OnClickListener() {
+        signInButton = headerView.findViewById(R.id.btn_google);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                v.setVisibility(View.GONE);
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, RC_SIGN_IN);
+                startActivityForResult(signInIntent, REQUEST_CODE_SIGN_IN);
             }
         });
 
-        if(savedInstanceState == null) {
-            mGoogleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(getString(R.string.AUTH_ID_WEB))
-                    .requestEmail()
-                    .build();
-
-            mGoogleSignInClient = GoogleSignIn.getClient(MainActivity.this, mGoogleSignInOptions);
+        tvTitle = headerView.findViewById(R.id.tvTitle);
+        tvName = headerView.findViewById(R.id.tvName);
+        imgView = headerView.findViewById(R.id.imgViewUrl);
+        imgView_Header = headerView.findViewById(R.id.imgView);
 
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            accountGoogle = account;
             updateUI(account);
-        }
-
-
-//        // QQQQ
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @SuppressLint("NonConstantResourceId")
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                Log.d("NEMO_DBG","onNavigationItemSelected: " + item.getTitle());
-//
-//                item.setChecked(true);
-//                drawer.closeDrawers();
-//
-//                switch (item.getItemId()) {
-//                    case R.id.nav_home:
-//                        navController.navigate(R.id.nav_home);
-//                        break;
-//                    case R.id.nav_gallery:
-//                        navController.navigate(R.id.nav_gallery);
-//                        break;
-//                    case R.id.nav_passgen:
-//                        navController.navigate(R.id.nav_passgen);
-//                        break;
-//                    case R.id.nav_setting:
-//                        navController.navigate(R.id.nav_setting);
-//                        break;
-//                }
-//                binding.drawerLayout.closeDrawer(GravityCompat.START, true);
-//                return false;
-////                return true;
-//            }
-//        });
     }
 
     @Override
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == REQUEST_CODE_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -174,27 +174,230 @@ public class MainActivity extends AppCompatActivity {
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("NEMO_DBG", "signInResult:failed code=" + e.getStatusCode());
+//            Log.w("NEMO_DBG", "signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
         }
     }
 
     private void updateUI(GoogleSignInAccount account){
         if (account != null) {
-            Log.d("NEMO_DBG", account.getEmail());
-            Log.d("NEMO_DBG", account.getDisplayName());
-            Log.d("NEMO_DBG", account.getPhotoUrl().toString());
-        }else {
-            Toast.makeText(this, "Sign in with Google failed...", Toast.LENGTH_SHORT).show();
+            Uri imgUrl = account.getPhotoUrl();
+
+            if (checkPermission()) {
+                // You can use the API that requires the permission.
+                File profile = new File(Environment.getExternalStorageDirectory() + "/PasswordManager/pm_pro.jpg");
+
+                if (!profile.exists()) {
+
+                    Handler uiHandler = new Handler(Looper.getMainLooper());
+                    uiHandler.post(new Runnable(){
+                        @Override
+                        public void run() {
+                            Picasso.get().load(imgUrl).into(new Target() {
+                                @Override
+                                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                    try {
+                                        File mydir = new File(Environment.getExternalStorageDirectory() + "/PasswordManager");
+                                        if (!mydir.exists()) {
+                                            mydir.mkdirs();
+                                        }
+
+                                        String fileUri = mydir.getAbsolutePath()
+                                                + File.separator
+//                                            + System.currentTimeMillis()
+                                                + "pm_pro.jpg";
+                                        FileOutputStream outputStream = new FileOutputStream(fileUri);
+
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                                        outputStream.flush();
+                                        outputStream.close();
+                                    } catch(IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    Log.i("NEMO_DBG_XX", "The image was obtained correctly");
+                                }
+
+                                @Override
+                                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                                    Log.e("NEMO_DBG_XX", "The image was not obtained");
+                                }
+
+                                @Override
+                                public void onPrepareLoad(Drawable placeHolderDrawable) {
+                                    Log.e("NEMO_DBG_XX", "Getting ready to get the image");
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    String img_path = "file:" + Environment.getExternalStorageDirectory() + "/PasswordManager/pm_pro.jpg";
+
+                    imgView.setVisibility(View.VISIBLE);
+                    signInButton.setVisibility(View.GONE);
+
+                    tvTitle.setText(account.getDisplayName());
+                    tvName.setText(account.getEmail());
+
+                    Picasso.get()
+                            .load(img_path)
+                            .placeholder(R.mipmap.ic_launcher_round)
+                            .config(Bitmap.Config.ALPHA_8)
+                            .fit()
+                            .transform(new CropCircleTransformation())
+                            .into(imgView);
+
+                    Toast.makeText(this, "Done...", Toast.LENGTH_SHORT).show();
+                }
+            }//checkPermission()
+            else {
+                ActivityCompat.requestPermissions(
+                        MainActivity.this,
+                        new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_CODE_READ_WRITE);
+            }
+
         }
     }
+
+    //runtime storage permission
+    public boolean checkPermission() {
+        int READ_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int WRITE_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if((READ_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) || (WRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_CODE_READ_WRITE);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode== REQUEST_CODE_READ_WRITE
+                && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Need do something...", Toast.LENGTH_SHORT).show();
+
+            updateUI(accountGoogle);
+        }
+    }
+
+    //            else if(shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE )){
+//                AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+//
+//                //  Inflate the Layout Resource file you created in Step 1
+//                View mView = getLayoutInflater().inflate(R.layout.access_permission, null);
+//
+//                Button mOk = (Button) mView.findViewById(R.id.ok__);
+//                Button mCancel = (Button) mView.findViewById(R.id.cancel__);
+//
+//                //  Create the AlertDialog using everything we needed from above
+//                mBuilder.setView(mView).setTitle("Storage access required");
+//                final AlertDialog permissionDialog = mBuilder.create();
+//
+//                //  Set Listener for the OK Button
+////                mOk.setOnTouchListener(btnEffect);
+//                mOk.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick (View view) {
+//                        permissionDialog.dismiss();
+//                    }
+//                });
+//
+//                //  Set Listener for the CANCEL Button
+////                mCancel.setOnTouchListener(btnEffect);
+//                mCancel.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick (View view) {
+//                        permissionDialog.dismiss();
+//                    }
+//                });
+//                permissionDialog.show();
+//            }
+
+
+    private final View.OnTouchListener btnEffect = new View.OnTouchListener() {
+        @SuppressLint("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    v.setAlpha(0.6F);
+                    break;
+                }
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL: {
+                    v.setAlpha(1F);
+                    break;
+                }
+            }
+            v.invalidate();
+            return false;
+        }
+    };
+
+    //useless...
+    private class DownloadImage extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... urls) {
+            String url = urls[0];
+
+            Picasso.get().load(url).into(new Target() {
+                @Override
+                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                    try {
+//                        File mydir = new File(Environment.getExternalStorageDirectory() + "/PasswordManager");
+//                        if (!mydir.exists()) {
+//                            mydir.mkdirs();
+//                        }
+//
+//                        String fileUri = mydir.getAbsolutePath() + File.separator + ".jpg";
+//                        FileOutputStream outputStream = new FileOutputStream(fileUri);
+//
+//                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+//                        outputStream.flush();
+//                        outputStream.close();
+//                    } catch(IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Toast.makeText(getApplicationContext(), "Image Downloaded", Toast.LENGTH_LONG).show();
+                    Log.i("NEMO_DBG_XX", "The image was obtained correctly");
+                }
+
+                @Override
+                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                    Log.e("NEMO_DBG_XX", "The image was not obtained");
+                }
+
+                @Override
+                public void onPrepareLoad(Drawable placeHolderDrawable) {
+                    Log.e("NEMO_DBG_XX", "Getting ready to get the image");
+                }
+            });
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Log.d("NEMO_DBG_XX", "placeHolderDrawable.toString()");
+        }
+    }
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("NEMO_DBG2", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onSaveInstanceState");
+        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onSaveInstanceState");
 
         outState.putInt("WHAT_EVER", 1000);
+    }
+
+    public void DownloadImage(String url) {
     }
 
     @Override
@@ -224,11 +427,6 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("NEMO_DBG", "Current Navi Item: " + getViewModelStore().);
     }
 
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onPostCreate");
-    }
 
     @Override
     protected void onPostResume() {

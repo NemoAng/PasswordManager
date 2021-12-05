@@ -50,6 +50,15 @@ android {
 }
 
 dependencies {
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+//    implementation 'jp.wasabeef:picasso-transformations:2.4.0'
+//    // If you want to use the GPU Filters
+//    implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
+
+    implementation 'jp.wasabeef.transformers:picasso:1.0.5'
+    // Use the GPU Filters
+    implementation 'jp.wasabeef.transformers:picasso-gpu:1.0.5'
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
@@ -91,5 +100,5 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 
     // optional - Paging 3 Integration
-    implementation "androidx.room:room-paging:2.4.0-beta02"
+    implementation "androidx.room:room-paging:$room_version"
 }
