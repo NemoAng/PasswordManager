@@ -499,7 +499,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTheme(){
-
         switch (SETTING_THEME) {
             case "Red":
                 setTheme(R.style.Theme_Red_700_900_NoActionBar);

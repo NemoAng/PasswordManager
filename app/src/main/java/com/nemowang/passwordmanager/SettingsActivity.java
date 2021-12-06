@@ -28,6 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String MS = "multi_select_list_preference_1";
 
     public static final String SETTING_THEME = "setting_theme";
+    public static final String SETTING_PW = "setting_login_pw";
 
     public static final String SETTING_PASS_NUM = "setting_pass_number";
     public static final String SETTING_PASS_LOW = "setting_pass_lower";
@@ -38,6 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SETTING_PASS_DUP = "setting_pass_duplicate";
     public static final String SETTING_PASS_SEQ = "setting_pass_seq";
 
+    SharedPreferences sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
@@ -80,15 +82,16 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        SharedPreferences sharedPref =
-                PreferenceManager.getDefaultSharedPreferences(this);
-
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
                 if(key.equals(SETTING_THEME)) {
                     SettingsActivity.this.recreate();
+                }
+                if(key.equals(SETTING_PW)){
+                    Log.d("NEMO_DBG", sharedPreferences.getString(SETTING_PW, "") + " 加密这里!!!");
                 }
             }
         });

@@ -18,7 +18,7 @@
         android:title="@string/action_search"
         android:layout_gravity="center"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="collapseActionView"/>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_settings"

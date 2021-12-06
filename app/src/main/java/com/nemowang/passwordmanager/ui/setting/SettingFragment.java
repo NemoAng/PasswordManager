@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -20,7 +21,8 @@ import com.nemowang.passwordmanager.databinding.FragmentSettingBinding;
 
 public class SettingFragment extends PreferenceFragmentCompat {
     private Button btnSetting;
-    ListPreference lpTheme;
+    private ListPreference lpTheme;
+    private EditTextPreference edtPassword;
 
     private SettingViewModel settingViewModel;
     private FragmentSettingBinding binding;
@@ -51,6 +53,14 @@ public class SettingFragment extends PreferenceFragmentCompat {
             }
         });
 
+        edtPassword = (EditTextPreference) findPreference (SettingsActivity.SETTING_PW);
+        edtPassword.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+//                Log.d("NEMO_DBG", edtPassword.getText() + " 加密这里...");
+                return true;//yes to settings activity
+            }
+        });
 
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(getContext());

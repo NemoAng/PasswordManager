@@ -3,13 +3,16 @@ package com.nemowang.passwordmanager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -19,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,9 +30,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.Executor;
 
 public class LoginActivity extends AppCompatActivity  {
-    public static final String PASSWORD = "setting_login_pw";
     public static final String NAME = "NAME";
     public static final String BIRTH = "BIRTH";
+
 
     private Executor executor;
     private BiometricPrompt bmtPrompt;
@@ -38,7 +42,8 @@ public class LoginActivity extends AppCompatActivity  {
     private final int RQ_CODE_FINGER_PRINT = 0x0FFE;
 
     private boolean bmtBtnEnable = false;
-
+    private SharedPreferences sharedPref;
+    private String prefPW, SETTING_THEME;
 
     ActivityResultLauncher<Intent> startBiometricActivity = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -52,6 +57,14 @@ public class LoginActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref =
+                PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+        prefPW = sharedPref.getString(SettingsActivity.SETTING_PW, "");
+
+        SETTING_THEME = sharedPref.getString
+                (SettingsActivity.SETTING_THEME, "-1");
+
+        this.setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -59,9 +72,7 @@ public class LoginActivity extends AppCompatActivity  {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPref =
-                        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-                String prefPW = sharedPref.getString(PASSWORD, "");
+
 
                 EditText edtPassword = findViewById(R.id.edtPassword);
                 String pwd = edtPassword.getText().toString();
@@ -150,9 +161,20 @@ public class LoginActivity extends AppCompatActivity  {
                     .setTitle("Biometric Login For Password Manager")
                     .setSubtitle("Log in using your biometric credential")
                     .setNegativeButtonText("Use Password")
+                    .setConfirmationRequired(true)
                     .build();
 
             bmtLoginButton.setOnClickListener(view -> {
+//                Typeface typeface = ResourcesCompat.getFont(this, R.font.cour);
+//
+//                View v1 = ((ViewGroup)view).getChildAt(0);
+//                ((TextView)v1).setTypeface(typeface);
+//
+//                View v2 = ((ViewGroup)view).getChildAt(1);
+//                v2.setAlpha(0.5F);
+//                View v3 = ((ViewGroup)view).getChildAt(2);
+//                v3.setAlpha(0.8F);
+
                 bmtPrompt.authenticate(pmtInfo);
             });
         }
@@ -175,5 +197,27 @@ public class LoginActivity extends AppCompatActivity  {
 
     public void onFPrintBtnClick(View view) {
         Toast.makeText(LoginActivity.this, "WWWWW",Toast.LENGTH_SHORT).show();
+    }
+
+    private void setTheme(){
+        switch (SETTING_THEME) {
+            case "Red":
+                setTheme(R.style.Theme_Red_700_900_NoActionBar);
+                break;
+            case "Purple":
+                setTheme(R.style.Theme_Purple_700_900_NoActionBar);
+                break;
+            case "Indigo":
+                setTheme(R.style.Theme_Indigo_700_900_NoActionBar);
+                break;
+            case "Green":
+                setTheme(R.style.Theme_Green_700_900_NoActionBar);
+                break;
+            case "Orange":
+                setTheme(R.style.Theme_Orange_700_900_NoActionBar);
+                break;
+            default:
+                setTheme(R.style.Theme_PasswordManager_NoActionBar);
+        }
     }
 }

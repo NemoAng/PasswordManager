@@ -2,7 +2,6 @@ package com.nemowang.passwordmanager.ui.home;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -187,65 +185,65 @@ public class HomeFragment extends Fragment {
 //        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ HomeFragment");
 //    }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onAttach");
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onCreate");
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onViewCreated");
-    }
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onViewStateRestored");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onStop");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onDestroy");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onDetach");
-    }
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onAttach");
+//    }
+//
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onCreate");
+//    }
+//
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onViewCreated");
+//    }
+//
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onViewStateRestored");
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onStart");
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onResume");
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onPause");
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onStop");
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onDestroy");
+//    }
+//
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onDetach");
+//    }
 
     @Override
     public void onPrimaryNavigationFragmentChanged(boolean isPrimaryNavigationFragment) {
