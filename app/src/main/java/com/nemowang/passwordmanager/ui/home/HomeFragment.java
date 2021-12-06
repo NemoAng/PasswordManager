@@ -31,6 +31,7 @@ import com.nemowang.passwordmanager.PasswordGenHelper;
 import com.nemowang.passwordmanager.R;
 import com.nemowang.passwordmanager.databinding.FragmentHomeBinding;
 
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -115,7 +116,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-                //
                 mPaste.setOnTouchListener(btnEffect);
                 mPaste.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -285,14 +285,23 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(Void unused) {
             RecyclerView rcv = getActivity().findViewById(R.id.recyclerview);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-            layoutManager.setStackFromEnd(true);
-            rcv.setLayoutManager(layoutManager);
+//            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//            layoutManager.setStackFromEnd(true);
+//            rcv.setLayoutManager(layoutManager);
+
+            rcv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
 
 
-            rcv.setHasFixedSize(true);
-//            rcv.scrollToPosition(rcv.getAdapter().getItemCount());
-            rcv.smoothScrollToPosition(rcv.getAdapter().getItemCount());
+                }
+            });
+
+//            rcv.setHasFixedSize(true);
+            int items = Objects.requireNonNull(rcv.getAdapter()).getItemCount();
+
+            rcv.smoothScrollToPosition(items+1);
         }
     }
 

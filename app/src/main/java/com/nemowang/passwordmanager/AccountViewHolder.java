@@ -60,9 +60,9 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
         View cardView = ((ViewGroup)view).getChildAt(0);
 
 //        LinearLayout
-        View nextChild2 = ((ViewGroup)cardView).getChildAt(0);
+        View nextChildLL = ((ViewGroup)cardView).getChildAt(0);
 
-//        nextChild2.setOnClickListener(new View.OnClickListener() {
+//        nextChildLL.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                View v2 = ((ViewGroup)v).getChildAt(1);
@@ -72,14 +72,14 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 //            }
 //        });
 
-//        nextChild2.setOnClickListener(new DoubleClickListener() {
+//        nextChildLL.setOnClickListener(new DoubleClickListener() {
 //            @Override
 //            public void onDoubleClick(@NonNull View v) {
 //                Log.d("NEMO_DBG", "Double clicked.");
 //            }
 //        });
 
-        nextChild2.setOnClickListener(new DoubleClickListener(300) {
+        nextChildLL.setOnClickListener(new DoubleClickListener(300) {
 
             private View.OnTouchListener btnEffect = new View.OnTouchListener() {
                 @SuppressLint("ClickableViewAccessibility")
@@ -352,7 +352,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
         });
 
-        nextChild2.setOnLongClickListener(new View.OnLongClickListener() {
+        nextChildLL.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 View v3 = ((ViewGroup)v).getChildAt(2);
@@ -365,7 +365,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        MainActivity.setBackgroundResource(nextChild2);
+        MainActivity.setBackgroundResource(nextChildLL);
 
         return new AccountViewHolder(view);
     }

@@ -66,10 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SignInButton signInButton;
     private TextView tvTitle, tvName;
-    private ImageView imgView_L;
-
-    private ImageView imgView_R;
-
+    private ImageView imgView_L, imgView_R;
 
     static String ls;
     static Set<String> ms;
@@ -82,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.PASS_COPY_LABEL";
 
     private static final int REQUEST_CODE_SIGN_IN = 0xf007;
+    public static final int REQUEST_CODE_READ_WRITE = 0xf0f0;
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions mGoogleSignInOptions;
-    public static final int REQUEST_CODE_READ_WRITE = 0xf0f0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,7 +237,10 @@ public class MainActivity extends AppCompatActivity {
                             .into(imgView_L, new Callback() {
                                 @Override
                                 public void onSuccess() {
+                                    signInButton.setVisibility(View.GONE);
                                     imgView_R.setVisibility(View.VISIBLE);
+                                    tvTitle.setText(account.getDisplayName());
+                                    tvName.setText(account.getEmail());
                                 }
 
                                 @Override
@@ -249,10 +249,9 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
 
-                    signInButton.setVisibility(View.GONE);
-
-                    tvTitle.setText(account.getDisplayName());
-                    tvName.setText(account.getEmail());
+//                    signInButton.setVisibility(View.GONE);
+//                    tvTitle.setText(account.getDisplayName());
+//                    tvName.setText(account.getEmail());
                 }
             }//checkPermission()
             else {
@@ -394,25 +393,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onSaveInstanceState");
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+////        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onSaveInstanceState");
+//
+//        outState.putInt("WHAT_EVER", 1000);
+//    }
 
-        outState.putInt("WHAT_EVER", 1000);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState");
-    }
-
-    @Override
-    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onRestoreInstanceState(savedInstanceState, persistentState);
-        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState 2");
-    }
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState");
+//    }
+//
+//    @Override
+//    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+//        super.onRestoreInstanceState(savedInstanceState, persistentState);
+//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState 2");
+//    }
 
     @Override
     protected void onStart() {
