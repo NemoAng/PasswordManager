@@ -47,13 +47,11 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
         accountItemView[3].setText(id.toString());
 
-        Log.d("NEMO_DBG_X", id.toString());
+//        Log.d("NEMO_DBG_X", id.toString());
     }
 
     @NonNull
     static AccountViewHolder create(@NonNull ViewGroup parent) {
-        Log.d("NEMO_DBG", "AccountViewHolder -> create");
-
 //        view -> LinearLayout
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_item, parent, false);
@@ -119,9 +117,6 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 String name = ((TextView)v2).getText().toString();
                 String pass = ((TextView)v3).getText().toString();
                 String id = ((TextView)v4).getText().toString();
-
-                Log.d("NEMO_DBG_X", id);
-
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
 
@@ -223,9 +218,6 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 String pass = ((TextView)v3).getText().toString();
 
                 String id = ((TextView)v4).getText().toString();
-
-                Log.d("NEMO_DBG_X", id);
-
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
 

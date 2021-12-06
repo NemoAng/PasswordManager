@@ -87,11 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(savedInstanceState == null) {
-            Log.d("NEMO_DBG", "MainActivity ------------------ onCreate");
-        } else {
-            Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onCreate");
-        }
+//        if(savedInstanceState == null) {
+//            Log.d("NEMO_DBG", "MainActivity ------------------ onCreate");
+//        } else {
+//            Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onCreate");
+//        }
         getSettings();
         this.setTheme();
         super.onCreate(savedInstanceState);
@@ -212,23 +212,23 @@ public class MainActivity extends AppCompatActivity {
                                     } catch(IOException e) {
                                         e.printStackTrace();
                                     }
-                                    Log.i("NEMO_DBG_XX", "The image was obtained correctly");
+                                    Log.i("NEMO_DBG", "The image was obtained correctly");
                                 }
 
                                 @Override
                                 public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                                    Log.e("NEMO_DBG_XX", "The image was not obtained");
+                                    Log.e("NEMO_DBG", "The image was not obtained");
                                 }
 
                                 @Override
                                 public void onPrepareLoad(Drawable placeHolderDrawable) {
-                                    Log.e("NEMO_DBG_XX", "Getting ready to get the image");
+                                    Log.e("NEMO_DBG", "Getting ready to get the image");
                                 }
                             });
                         }
                     });
                 } else {
-                    String img_path = "file:" + Environment.getExternalStorageDirectory() + "/PasswordManager/pm_pro.jpg";
+                    String img_path = "file://" + Environment.getExternalStorageDirectory() + "/PasswordManager/pm_pro.jpg";
 
                     Picasso.get()
                             .load(img_path)
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onError(Exception e) {
-                                    Log.i("NEMO_DBG_XX", e.getMessage());
+                                    Log.i("NEMO_DBG", e.getMessage());
                                 }
                             });
 
@@ -260,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
                         new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
                         REQUEST_CODE_READ_WRITE);
             }
-
         }
     }
 
@@ -287,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
-            Log.e("NEMO_DBG_XX", "onRequestPermissionsResult");
+            Log.e("NEMO_DBG", "onRequestPermissionsResult");
 
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
             updateUI(account);
@@ -326,7 +325,6 @@ public class MainActivity extends AppCompatActivity {
 //                });
 //                permissionDialog.show();
 //            }
-
 
     private final View.OnTouchListener btnEffect = new View.OnTouchListener() {
         @SuppressLint("ClickableViewAccessibility")
@@ -373,17 +371,17 @@ public class MainActivity extends AppCompatActivity {
 //                        e.printStackTrace();
 //                    }
 //                    Toast.makeText(getApplicationContext(), "Image Downloaded", Toast.LENGTH_LONG).show();
-                    Log.i("NEMO_DBG_XX", "The image was obtained correctly");
+                    Log.i("NEMO_DBG", "The image was obtained correctly");
                 }
 
                 @Override
                 public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                    Log.e("NEMO_DBG_XX", "The image was not obtained");
+                    Log.e("NEMO_DBG", "The image was not obtained");
                 }
 
                 @Override
                 public void onPrepareLoad(Drawable placeHolderDrawable) {
-                    Log.e("NEMO_DBG_XX", "Getting ready to get the image");
+                    Log.e("NEMO_DBG", "Getting ready to get the image");
                 }
             });
             return null;
@@ -391,99 +389,91 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void unused) {
-            Log.d("NEMO_DBG_XX", "placeHolderDrawable.toString()");
+            Log.d("NEMO_DBG", "placeHolderDrawable.toString()");
         }
     }
-
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onSaveInstanceState");
+//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onSaveInstanceState");
 
         outState.putInt("WHAT_EVER", 1000);
     }
 
-    public void DownloadImage(String url) {
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState");
-    }
-
-    @Override
-    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onRestoreInstanceState(savedInstanceState, persistentState);
-        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState 2");
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onStart");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onPause");
-
-//        Log.d("NEMO_DBG", "Current Navi Item: " + getViewModelStore().);
-    }
-
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onPostResume");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onDestroy");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("NEMO_DBG2", "MainActivity ++++++++++++++++++ onPause");
-    }
-
-    @Override
-    protected void onResumeFragments() {
-        super.onResumeFragments();
-        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onResumeFragments");
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onBackPressed");
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onCreate 2");
-    }
-
-
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onRestart");
-    }
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState");
+//    }
+//
+//    @Override
+//    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+//        super.onRestoreInstanceState(savedInstanceState, persistentState);
+//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState 2");
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onStart");
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onPause");
+//
+////        Log.d("NEMO_DBG", "Current Navi Item: " + getViewModelStore().);
+//    }
+//
+//    @Override
+//    protected void onPostResume() {
+//        super.onPostResume();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onPostResume");
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onStop");
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onDestroy");
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onPause");
+//    }
+//
+//    @Override
+//    protected void onResumeFragments() {
+//        super.onResumeFragments();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onResumeFragments");
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onBackPressed");
+//    }
+//
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+//        super.onCreate(savedInstanceState, persistentState);
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onCreate 2");
+//    }
+//
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onRestart");
+//    }
 
     public static void setBackgroundResource(View view){
 //        LinearLayout nav_header = (LinearLayout)findViewById(R.id.nav_header);
@@ -567,7 +557,6 @@ public class MainActivity extends AppCompatActivity {
         
         this.setBackgroundResource(findViewById(R.id.nav_header));
 
-
         getMenuInflater().inflate(R.menu.action_menu, menu);
 
         Log.d("NEMO_DBG", "onCreateOptionsMenu");
@@ -591,7 +580,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
 //        return super.onOptionsItemSelected(item); // yes
         return false; // yes
     }
@@ -606,7 +594,6 @@ public class MainActivity extends AppCompatActivity {
         String title = ((TextView)v1).getText().toString();
         String name = ((TextView)v2).getText().toString();
         String pass = ((TextView)v3).getText().toString();
-
 
         Log.d("NEMO_DBG", title + "--" + name + "::" + pass);
     }
@@ -628,5 +615,4 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Account name copied.", Toast.LENGTH_SHORT).show();
     }
-
 }

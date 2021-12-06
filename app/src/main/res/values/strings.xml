@@ -211,5 +211,7 @@
     <string name="password_length_want">Password length</string>
     <string name="AUTH_ID_ANDROID" translatable="false">913446610683-1751jjj76blk1ai2hjjnqq8l90sqjd1v.apps.googleusercontent.com</string>
     <string name="AUTH_ID_WEB" translatable="false">913446610683-ds47a18rjrqpdtt7e9152of27vuu95r0.apps.googleusercontent.com</string>
+    <string name="login">Login</string>
+    <string name="password_required">Password required</string>
 
 </resources>
