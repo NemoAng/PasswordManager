@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,13 +67,11 @@ public class PassgenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        if(savedInstanceState == null) {
-            Log.d("NEMO_DBG", "savedInstanceState is null.------");
-        } else {
-            Log.d("NEMO_DBG", "savedInstanceState not null.++++++");
-//            String len = savedInstanceState.getString(PASS_LEN_KEY);
-//            Log.d("NEMO_DBG", len);
-        }
+//        if(savedInstanceState == null) {
+//            Log.d("NEMO_DBG", "savedInstanceState is null.------");
+//        } else {
+//            Log.d("NEMO_DBG", "savedInstanceState not null.++++++");
+//        }
 
 //        passgenViewModel =
 //                new ViewModelProvider(this).get(PassgenViewModel.class);
@@ -314,71 +311,71 @@ public class PassgenFragment extends Fragment {
 //        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ PassgenFragment");
 //    }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onAttach");
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onCreate");
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onViewCreated");
-    }
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onViewStateRestored");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onStop");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onDestroy");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onDetach");
-    }
-
-    @Override
-    public void onPrimaryNavigationFragmentChanged(boolean isPrimaryNavigationFragment) {
-        super.onPrimaryNavigationFragmentChanged(isPrimaryNavigationFragment);
-        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onPrimaryNavigationFragmentChanged");
-    }
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onAttach");
+//    }
+//
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onCreate");
+//    }
+//
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onViewCreated");
+//    }
+//
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onViewStateRestored");
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onStart");
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onResume");
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onPause");
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onStop");
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onDestroy");
+//    }
+//
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onDetach");
+//    }
+//
+//    @Override
+//    public void onPrimaryNavigationFragmentChanged(boolean isPrimaryNavigationFragment) {
+//        super.onPrimaryNavigationFragmentChanged(isPrimaryNavigationFragment);
+//        Log.d("NEMO_DBG", "PassgenFragment ++++++++++++++++++ onPrimaryNavigationFragmentChanged");
+//    }
 
     private int PasswordLength(int position){
         if(position == 126)

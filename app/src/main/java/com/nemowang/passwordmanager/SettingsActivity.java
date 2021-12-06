@@ -1,12 +1,10 @@
 package com.nemowang.passwordmanager;
 
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +36,8 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SETTING_PASS_SIM = "setting_pass_similar";
     public static final String SETTING_PASS_DUP = "setting_pass_duplicate";
     public static final String SETTING_PASS_SEQ = "setting_pass_seq";
+
+    public static boolean BACK_PRESSED = false;
 
     SharedPreferences sharedPref;
     @Override
@@ -79,6 +79,13 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        BACK_PRESSED = true;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -99,35 +106,35 @@ public class SettingsActivity extends AppCompatActivity {
         Log.d("NEMO_DBG", "SettingsActivity->onStart");
     }
 
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Log.d("NEMO_DBG", "SettingsActivity->onConfigurationChanged");
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        Log.d("NEMO_DBG", "SettingsActivity->onPostResume");
-    }
-
-    @Override
-    public void onContentChanged() {
-        super.onContentChanged();
-        Log.d("NEMO_DBG", "SettingsActivity->onContentChanged");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("NEMO_DBG", "SettingsActivity->onPause");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("NEMO_DBG", "SettingsActivity->onResume");
-    }
+//    @Override
+//    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        Log.d("NEMO_DBG", "SettingsActivity->onConfigurationChanged");
+//    }
+//
+//    @Override
+//    protected void onPostResume() {
+//        super.onPostResume();
+//        Log.d("NEMO_DBG", "SettingsActivity->onPostResume");
+//    }
+//
+//    @Override
+//    public void onContentChanged() {
+//        super.onContentChanged();
+//        Log.d("NEMO_DBG", "SettingsActivity->onContentChanged");
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Log.d("NEMO_DBG", "SettingsActivity->onPause");
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Log.d("NEMO_DBG", "SettingsActivity->onResume");
+//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -150,7 +157,7 @@ public class SettingsActivity extends AppCompatActivity {
                 PreferenceManager.getDefaultSharedPreferences(this);
 
         final String theme = sharedPref.getString
-                (SettingsActivity.SETTING_THEME, "-1");
+                (SettingsActivity.SETTING_THEME, "Default");
 
         switch (theme) {
             case "Red":

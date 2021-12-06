@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity  {
 
     private boolean bmtBtnEnable = false;
     private SharedPreferences sharedPref;
-    private String prefPW, SETTING_THEME;
+    private String SETTING_PASSWORD, SETTING_THEME;
 
     ActivityResultLauncher<Intent> startBiometricActivity = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -59,12 +59,12 @@ public class LoginActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-        prefPW = sharedPref.getString(SettingsActivity.SETTING_PW, "");
-
+        SETTING_PASSWORD = sharedPref.getString(SettingsActivity.SETTING_PW, "");
         SETTING_THEME = sharedPref.getString
-                (SettingsActivity.SETTING_THEME, "-1");
+                (SettingsActivity.SETTING_THEME, "Default");
 
-        this.setTheme();
+        this.setTheme(SETTING_THEME);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -72,13 +72,10 @@ public class LoginActivity extends AppCompatActivity  {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 EditText edtPassword = findViewById(R.id.edtPassword);
-                String pwd = edtPassword.getText().toString();
+                String password = edtPassword.getText().toString();
 
-
-                if(prefPW.isEmpty() || pwd.equals(prefPW)){
+                if(SETTING_PASSWORD.isEmpty() || password.equals(SETTING_PASSWORD)){
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -199,8 +196,8 @@ public class LoginActivity extends AppCompatActivity  {
         Toast.makeText(LoginActivity.this, "WWWWW",Toast.LENGTH_SHORT).show();
     }
 
-    private void setTheme(){
-        switch (SETTING_THEME) {
+    private void setTheme(String theme){
+        switch (theme) {
             case "Red":
                 setTheme(R.style.Theme_Red_700_900_NoActionBar);
                 break;
@@ -218,6 +215,15 @@ public class LoginActivity extends AppCompatActivity  {
                 break;
             default:
                 setTheme(R.style.Theme_PasswordManager_NoActionBar);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(MainActivity.BACK_PRESSED && MainActivity.SETTING_THEME != SETTING_THEME) {
+           recreate();
         }
     }
 }

@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     public static String SETTING_THEME;
     public static Boolean SETTING_PASS_NUM,SETTING_PASS_LOW, SETTING_PASS_UPP,
             SETTING_PASS_BEG, SETTING_PASS_SYM, SETTING_PASS_SIM,SETTING_PASS_DUP, SETTING_PASS_SEQ;
+    public static boolean BACK_PRESSED = false;
 
     public static final String PASS_COPY_LABEL = "com.nemowang.passwordmanager.PASS_COPY_LABEL";
 
@@ -401,30 +402,35 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("WHAT_EVER", 1000);
     }
 
-//    @Override
-//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState");
-//    }
-//
-//    @Override
-//    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-//        super.onRestoreInstanceState(savedInstanceState, persistentState);
-//        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState 2");
-//    }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onStart");
-//    }
-//
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState");
+    }
+
+    @Override
+    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+        Log.d("NEMO_DBG", "MainActivity %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% onRestoreInstanceState 2");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sharedPref =
+                PreferenceManager.getDefaultSharedPreferences(this);
+        String theme = sharedPref.getString
+                (SettingsActivity.SETTING_THEME, "Default");
+
+        if(SettingsActivity.BACK_PRESSED && SETTING_THEME != theme) {
+            recreate();
+        }
+    }
+
 //    @Override
 //    protected void onPause() {
 //        super.onPause();
 //        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onPause");
-//
-////        Log.d("NEMO_DBG", "Current Navi Item: " + getViewModelStore().);
 //    }
 //
 //    @Override
@@ -456,12 +462,12 @@ public class MainActivity extends AppCompatActivity {
 //        super.onResumeFragments();
 //        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onResumeFragments");
 //    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        Log.d("NEMO_DBG", "MainActivity ++++++++++++++++++ onBackPressed");
-//    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        BACK_PRESSED = true;
+    }
 //
 //    @Override
 //    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -530,7 +536,7 @@ public class MainActivity extends AppCompatActivity {
                 (SettingsActivity.MS, null);
 
         SETTING_THEME = sharedPref.getString
-                (SettingsActivity.SETTING_THEME, "-1");
+                (SettingsActivity.SETTING_THEME, "Default");
 
         SETTING_PASS_NUM = sharedPref.getBoolean
                 (SettingsActivity.SETTING_PASS_NUM, false);

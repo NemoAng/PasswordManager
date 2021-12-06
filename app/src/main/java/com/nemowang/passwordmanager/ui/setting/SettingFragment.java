@@ -69,7 +69,8 @@ public class SettingFragment extends PreferenceFragmentCompat {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 if(!key.equals(SettingsActivity.SETTING_THEME)) {
-
+                    MainActivity.SETTING_THEME = sharedPref.getString
+                            (SettingsActivity.SETTING_THEME, "Default");
 
                     MainActivity.SETTING_PASS_NUM = sharedPref.getBoolean
                             (SettingsActivity.SETTING_PASS_NUM, false);
