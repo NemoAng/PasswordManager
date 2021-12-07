@@ -29,6 +29,7 @@ import com.nemowang.passwordmanager.AccountViewModel;
 import com.nemowang.passwordmanager.MainActivity;
 import com.nemowang.passwordmanager.PasswordGenHelper;
 import com.nemowang.passwordmanager.R;
+import com.nemowang.passwordmanager.TopSmoothScroller;
 import com.nemowang.passwordmanager.databinding.FragmentHomeBinding;
 
 import java.util.Objects;
@@ -40,9 +41,15 @@ public class HomeFragment extends Fragment {
 
     private AccountViewModel mAccountViewModel;
 
+    private TopSmoothScroller smoothScroller;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         Log.d("NEMO_DBG", "HomeFragment -> onCreateView");
+
+
+        smoothScroller = new TopSmoothScroller(getContext());
+
 
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
@@ -285,23 +292,13 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(Void unused) {
             RecyclerView rcv = getActivity().findViewById(R.id.recyclerview);
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//            layoutManager.setStackFromEnd(true);
-//            rcv.setLayoutManager(layoutManager);
 
-            rcv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-
-
-                }
-            });
-
-//            rcv.setHasFixedSize(true);
             int items = Objects.requireNonNull(rcv.getAdapter()).getItemCount();
 
-            rcv.smoothScrollToPosition(items+1);
+            if (smoothScroller != null) {
+                smoothScroller.setTargetPosition(items);
+                (Objects.requireNonNull(rcv.getLayoutManager())).startSmoothScroll(smoothScroller);
+            }
         }
     }
 
