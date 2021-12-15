@@ -36,6 +36,7 @@ public class PassgenFragment extends Fragment {
     private final String passNumber = "0123456789";//10
     private final String passSymbol = "!\";#$%&'()*+,-./:;<=>?@[]^_`{|}~";//32
     private final String passSimilar = "il1Lo0O";//7
+
     private boolean noSimilar = false;
     private boolean noDuplicate = false;
     private boolean noSequential = false;

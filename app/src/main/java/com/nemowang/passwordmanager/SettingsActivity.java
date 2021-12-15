@@ -13,20 +13,12 @@ import androidx.preference.PreferenceManager;
 import com.nemowang.passwordmanager.ui.setting.SettingFragment;
 
 public class SettingsActivity extends AppCompatActivity {
-    public static final String SW1 = "switch_preference_1";
-    public static final String SW2 = "switch_preference_2";
-    public static final String SW3 = "switch_preference_3";
-
-
-    public static final String SW4 = "switch_preference_4";
-    public static final String CK1 = "check_box_preference_1";
-    public static final String CK2 = "check_box_preference_2";
-
     public static final String LS = "list_preference_1";
     public static final String MS = "multi_select_list_preference_1";
 
     public static final String SETTING_THEME = "setting_theme";
     public static final String SETTING_PW = "setting_login_pw";
+    public static final String SETTING_ENCRYPT = "setting_encrypt";
 
     public static final String SETTING_PASS_NUM = "setting_pass_number";
     public static final String SETTING_PASS_LOW = "setting_pass_lower";
@@ -97,9 +89,9 @@ public class SettingsActivity extends AppCompatActivity {
                 if(key.equals(SETTING_THEME)) {
                     SettingsActivity.this.recreate();
                 }
-                if(key.equals(SETTING_PW)){
-                    Log.d("NEMO_DBG", sharedPreferences.getString(SETTING_PW, "") + " 加密这里!!!");
-                }
+//                if(key.equals(SETTING_PW)){
+//                    Log.d("NEMO_DBG", sharedPreferences.getString(SETTING_PW, "") + " 加密这里!!!");
+//                }
             }
         });
 

@@ -252,11 +252,11 @@ public class HomeFragment extends Fragment {
 //        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onDetach");
 //    }
 
-    @Override
-    public void onPrimaryNavigationFragmentChanged(boolean isPrimaryNavigationFragment) {
-        super.onPrimaryNavigationFragmentChanged(isPrimaryNavigationFragment);
-        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onPrimaryNavigationFragmentChanged");
-    }
+//    @Override
+//    public void onPrimaryNavigationFragmentChanged(boolean isPrimaryNavigationFragment) {
+//        super.onPrimaryNavigationFragmentChanged(isPrimaryNavigationFragment);
+//        Log.d("NEMO_DBG", "HomeFragment ++++++++++++++++++ onPrimaryNavigationFragmentChanged");
+//    }
 
 
     private final View.OnTouchListener btnEffect = new View.OnTouchListener() {
@@ -306,8 +306,7 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-
-        Log.d("NEMO_DBG", "HomeFragment -> onDestroyView");
+//        Log.d("NEMO_DBG", "HomeFragment -> onDestroyView");
     }
 
 }

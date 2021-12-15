@@ -9,4 +9,10 @@
         <item>Orange</item>
     </string-array>
 
+    <string-array name="encrypt_setting">
+        <item>MD5</item>
+        <item>BASE64</item>
+        <item>DES</item>
+    </string-array>
+
 </resources>

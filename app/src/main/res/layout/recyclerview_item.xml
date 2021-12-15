@@ -7,12 +7,16 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
+
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginHorizontal="8dp"
+
+
+
         android:clickable="true"
         android:longClickable="true"
-        app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 

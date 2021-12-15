@@ -53,7 +53,7 @@
         <item name="android:windowFullscreen">true</item>
 <!--        <item name="windowActionBar">false</item>-->
 <!--        <item name="windowNoTitle">true</item>-->
-<!--        <item name="android:fontFamily">@font/courbd</item>-->
+        <item name="android:fontFamily">@font/courbd</item>
     </style>
     <style name="Theme.Red_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Red_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -79,6 +79,7 @@
     </style>
     <style name="Theme.Purple_700_900.FullScreen">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:fontFamily">@font/courbd</item>
     </style>
     <style name="Theme.Purple_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Purple_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -104,6 +105,7 @@
     </style>
     <style name="Theme.Indigo_700_900.FullScreen">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:fontFamily">@font/courbd</item>
     </style>
     <style name="Theme.Indigo_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Indigo_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -129,6 +131,7 @@
     </style>
     <style name="Theme.Green_700_900.FullScreen">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:fontFamily">@font/courbd</item>
     </style>
     <style name="Theme.Green_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Green_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -154,6 +157,7 @@
     </style>
     <style name="Theme.Orange_700_900.FullScreen">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:fontFamily">@font/courbd</item>
     </style>
     <style name="Theme.Orange_700_900.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Orange_700_900.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

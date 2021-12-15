@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity  {
 
     private boolean bmtBtnEnable = false;
     private SharedPreferences sharedPref;
-    private String SETTING_PASSWORD, SETTING_THEME;
+    private String SETTING_PASSWORD, SETTING_THEME, SETTING_ENCRYPT;
 
     ActivityResultLauncher<Intent> startBiometricActivity = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-        SETTING_PASSWORD = sharedPref.getString(SettingsActivity.SETTING_PW, "");
+
         SETTING_THEME = sharedPref.getString
                 (SettingsActivity.SETTING_THEME, "Default");
 
@@ -73,9 +73,22 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 EditText edtPassword = findViewById(R.id.edtPassword);
-                String password = edtPassword.getText().toString();
+                String passwordEnc, password = edtPassword.getText().toString();
 
-                if(SETTING_PASSWORD.isEmpty() || password.equals(SETTING_PASSWORD)){
+                SETTING_ENCRYPT = sharedPref.getString(SettingsActivity.SETTING_ENCRYPT, "");
+                SETTING_PASSWORD = sharedPref.getString(SettingsActivity.SETTING_PW, "");
+
+                if(SETTING_ENCRYPT.equals(EncryptDecrypt.MD5)) {
+                    passwordEnc = EncryptDecrypt.MD5(password);
+                }
+                else if(SETTING_ENCRYPT.equals(EncryptDecrypt.BASE64)) {
+                    passwordEnc = EncryptDecrypt.BASE64(password);
+                }
+                else {
+                    passwordEnc = EncryptDecrypt.DES(password);
+                }
+
+                if(SETTING_PASSWORD.isEmpty() || passwordEnc.equals(SETTING_PASSWORD)){
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -193,7 +206,7 @@ public class LoginActivity extends AppCompatActivity  {
 //    }
 
     public void onFPrintBtnClick(View view) {
-        Toast.makeText(LoginActivity.this, "WWWWW",Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "onFPrintBtnClick",Toast.LENGTH_SHORT).show();
     }
 
     private void setTheme(String theme){

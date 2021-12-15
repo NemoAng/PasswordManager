@@ -60,6 +60,13 @@
     </PreferenceCategory>
 
     <PreferenceCategory app:title="Security Setting">
+        <ListPreference
+            android:defaultValue="MD5"
+            android:entries="@array/encrypt_setting"
+            android:entryValues="@array/encrypt_setting"
+            android:key="setting_encrypt"
+            android:title="@string/encrypt_list" />
+
         <EditTextPreference
             android:key="setting_login_pw"
             android:title="Login password"
@@ -67,29 +74,7 @@
             android:inputType="textWebPassword"
             android:dialogTitle="Login Password"
             android:defaultValue="" />
-    </PreferenceCategory>
 
-    <PreferenceCategory app:title="Encryption Methods">
-
-        <SwitchPreference
-            android:title="MD5"
-            app:defaultValue="true"
-            app:key="switch_preference_1" />
-
-        <SwitchPreference
-            android:title="BASE64"
-            app:defaultValue="false"
-            app:key="switch_preference_2" />
-
-        <SwitchPreference
-            android:title="DES"
-            app:defaultValue="false"
-            app:key="switch_preference_3" />
-
-        <SwitchPreference
-            android:title="RSA2048"
-            app:defaultValue="false"
-            app:key="switch_preference_4" />
     </PreferenceCategory>
 
 </PreferenceScreen>

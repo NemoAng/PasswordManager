@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
     static String ls;
     static Set<String> ms;
 
-    public static String SETTING_THEME;
-    public static Boolean SETTING_PASS_NUM,SETTING_PASS_LOW, SETTING_PASS_UPP,
+    public static String SETTING_THEME, SETTING_ENCRYPT;
+    public static Boolean SETTING_PASS_NUM, SETTING_PASS_LOW, SETTING_PASS_UPP,
             SETTING_PASS_BEG, SETTING_PASS_SYM, SETTING_PASS_SIM,SETTING_PASS_DUP, SETTING_PASS_SEQ;
     public static boolean BACK_PRESSED = false;
 
@@ -536,6 +536,9 @@ public class MainActivity extends AppCompatActivity {
 
         SETTING_THEME = sharedPref.getString
                 (SettingsActivity.SETTING_THEME, "Default");
+
+        SETTING_ENCRYPT = sharedPref.getString
+                (SettingsActivity.SETTING_ENCRYPT, "MD5");
 
         SETTING_PASS_NUM = sharedPref.getBoolean
                 (SettingsActivity.SETTING_PASS_NUM, false);

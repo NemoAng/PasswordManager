@@ -42,7 +42,7 @@ public abstract class DoubleClickListener implements OnClickListener {
             @Override
             public void run() {
                 if(!doubleClicked){
-                    onSingleClickShit(v);
+                    onSingleClick(v);
 //                    clickedCnt = 0;
                 }
             }
@@ -51,5 +51,5 @@ public abstract class DoubleClickListener implements OnClickListener {
     }
 
     public abstract void onDoubleClick(View v);
-    public abstract void onSingleClickShit(View v);
+    public abstract void onSingleClick(View v);
 }

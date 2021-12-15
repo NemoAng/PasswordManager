@@ -329,7 +329,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
             }
 
             @Override
-            public void onSingleClickShit(View v) {
+            public void onSingleClick(View v) {
                 // double-click code that is executed if the user double-taps
                 Log.d("NEMO_DBG", "Single clicked.");
 
