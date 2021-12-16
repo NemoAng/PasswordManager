@@ -484,18 +484,23 @@ public class MainActivity extends AppCompatActivity {
 //        LinearLayout nav_header = (LinearLayout)findViewById(R.id.nav_header);
         switch (SETTING_THEME) {
             case "Red":
+            case "红色":
                 view.setBackgroundResource(R.drawable.side_nav_bar_red);
                 break;
             case "Purple":
+            case "紫色":
                 view.setBackgroundResource(R.drawable.side_nav_bar_purple);
                 break;
             case "Indigo":
+            case "靛青":
                 view.setBackgroundResource(R.drawable.side_nav_bar_indigo);
                 break;
             case "Green":
+            case "绿色":
                 view.setBackgroundResource(R.drawable.side_nav_bar_green);
                 break;
             case "Orange":
+            case "橙色":
                 view.setBackgroundResource(R.drawable.side_nav_bar_orange);
                 break;
             default:
@@ -506,18 +511,23 @@ public class MainActivity extends AppCompatActivity {
     private void setTheme(){
         switch (SETTING_THEME) {
             case "Red":
+            case "红色":
                 setTheme(R.style.Theme_Red_700_900_NoActionBar);
                 break;
             case "Purple":
+            case "紫色":
                 setTheme(R.style.Theme_Purple_700_900_NoActionBar);
                 break;
             case "Indigo":
+            case "靛青":
                 setTheme(R.style.Theme_Indigo_700_900_NoActionBar);
                 break;
             case "Green":
+            case "绿色":
                 setTheme(R.style.Theme_Green_700_900_NoActionBar);
                 break;
             case "Orange":
+            case "橙色":
                 setTheme(R.style.Theme_Orange_700_900_NoActionBar);
                 break;
             default:
@@ -584,6 +594,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if(item.getItemId() == R.id.action_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
             return true;
         }

@@ -30,5 +30,31 @@
     <string name="password_length">密码长度</string>
     <string name="password_length_want">你想要的密码长度</string>
     <string name="menu_home">主页</string>
+    <string name="login">登录</string>
+    <string name="action_hive" translatable="false">测试</string>
+    <string name="password" translatable="false">密码：</string>
+    <string name="account" translatable="false">账号</string>
+    <string name="txt_title" translatable="false">标题</string>
+    <string name="title" translatable="false">标题</string>
+    <string name="your_account" translatable="false">你的账号</string>
+    <string name="your_password" translatable="false">你的密码</string>
+    <string name="cancel" translatable="false">取消</string>
+    <string name="save">保存</string>
+    <string name="login_failed">登录失败</string>
+    <string name="invalid_password">密码至少5个字符</string>
+    <string name="invalid_username">用户名无效</string>
+    <string name="welcome" translatable="false">欢迎</string>
+    <string name="hint_password" translatable="false">输入你的密码</string>
+    <string name="password_required">需要密码</string>
+    <string name="login_password">登录密码</string>
+    <string name="security_setting">安全设置</string>
+    <string name="encrypt_list">加密方式</string>
+    <string name="reset_password">重设密码？</string>
+    <string name="input_account">输入你的账号</string>
+    <string name="a_u_sure">确定删除？</string>
+    <string name="yes">是</string>
+    <string name="about_and">关于</string>
+    <string name="action_about">关于</string>
+    <string name="about_spec">初始密码为空.\n\n登录密码加密方式从BASE64/DES切换到MD5会清除当前密码。</string>
 
 </resources>

@@ -2,15 +2,18 @@ package com.nemowang.passwordmanager.ui.home;
 
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -72,7 +75,20 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
 
-                mBuilder.setTitle("Input Your Account");
+//                String title = getContext().getResources().getString(R.string.input_account);
+
+                TextView title = new TextView(v.getContext());
+                // You Can Customise your Title here
+                title.setText(getContext().getResources().getString(R.string.input_account));
+//                title.setBackgroundColor(Color.parseColor("#ae52d4"));
+                title.setPadding(25, 20, 25, 20);
+                title.setGravity(Gravity.LEFT);
+                title.setTextColor(Color.WHITE);
+                title.setTextSize(20);
+                MainActivity.setBackgroundResource(title);
+
+//                mBuilder.setTitle(title);
+                mBuilder.setCustomTitle(title);
                 //  Inflate the Layout Resource file you created in Step 1
                 View mView = getLayoutInflater().inflate(R.layout.account_input_v2, null);
 

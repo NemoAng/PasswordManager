@@ -175,7 +175,8 @@ public class SettingFragment extends PreferenceFragmentCompat {
 
 
                 if(MainActivity.SETTING_ENCRYPT.equals(EncryptDecrypt.MD5)) {
-                    deCryptText = "Set new password?";
+//                    deCryptText = "Set new password?";
+                    deCryptText = getContext().getResources().getString(R.string.reset_password);
                 }
                 else if(MainActivity.SETTING_ENCRYPT.equals(EncryptDecrypt.BASE64)) {
                     deCryptText = EncryptDecrypt.BASE64_Decrypt(pass);

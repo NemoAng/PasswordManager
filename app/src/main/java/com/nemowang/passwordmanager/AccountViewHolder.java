@@ -5,8 +5,10 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -79,7 +81,19 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                     case MotionEvent.ACTION_UP:
                         AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
 
-                        mBuilder.setTitle("Are You Sure?");
+                        TextView title = new TextView(v.getContext());
+                        // You Can Customise your Title here
+                        title.setText(v.getContext().getResources().getString(R.string.a_u_sure));
+//                      title.setBackgroundColor(Color.parseColor("#ae52d4"));
+                        title.setPadding(25, 20, 25, 20);
+                        title.setGravity(Gravity.LEFT);
+                        title.setTextColor(Color.WHITE);
+                        title.setTextSize(20);
+                        MainActivity.setBackgroundResource(title);
+
+//                      mBuilder.setTitle(title);
+                        mBuilder.setCustomTitle(title);
+
                         //  Inflate the Layout Resource file you created in Step 1
 
                         //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
@@ -89,7 +103,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
                         final TextView mRemove = (TextView) mView.findViewById(R.id.textViewDel);
 
-                        mRemove.setText("❤❤❤❤❤❤❤❤");
+                        mRemove.setText("😍🙄😀😛😎🤩🥰😪😋😥😂🤣😘😣😉😏😫😜😢😊");
 
 
                         Button mOk = (Button) mView.findViewById(R.id.yesDel);

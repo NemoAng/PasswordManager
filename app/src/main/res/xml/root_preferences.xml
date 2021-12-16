@@ -59,7 +59,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Security Setting">
+    <PreferenceCategory app:title="@string/security_setting">
         <ListPreference
             android:defaultValue="MD5"
             android:entries="@array/encrypt_setting"
@@ -69,10 +69,10 @@
 
         <EditTextPreference
             android:key="setting_login_pw"
-            android:title="Login password"
+            android:title="@string/login_password"
             android:persistent="true"
             android:inputType="textWebPassword"
-            android:dialogTitle="Login Password"
+            android:dialogTitle="@string/login_password"
             android:defaultValue="" />
 
     </PreferenceCategory>

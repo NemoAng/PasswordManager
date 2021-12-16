@@ -22,14 +22,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_title" />
+
             <EditText
                 android:id="@+id/edtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:text=""
+                android:hint="@string/title"
                 android:inputType="textPersonName"
-                android:hint="@string/title" />
+                android:text=""
+                android:textSize="14sp" />
 
             <!--    name-->
             <TextView
@@ -43,9 +44,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:text=""
+                android:hint="@string/your_account"
                 android:inputType="textPersonName"
-                android:hint="@string/your_account" />
+                android:text=""
+                android:textSize="14sp" />
 
             <!--    password length-->
             <TextView
@@ -59,9 +61,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:text=""
+                android:hint="@string/password_length_want"
                 android:inputType="textPersonName"
-                android:hint="@string/password_length_want" />
+                android:text=""
+                android:textSize="14sp" />
 
             <!-- password -->
             <TextView
@@ -73,15 +76,17 @@
             <EditText
                 android:id="@+id/edtPass"
 
-                android:maxLines="4"
-                android:scrollbars="none"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:enabled="false"
                 android:ems="10"
-                android:text=""
+                android:hint="@string/your_password"
                 android:inputType="textMultiLine"
-                android:hint="@string/your_password" />
+                android:maxLines="4"
+                android:scrollbars="none"
+                android:text=""
+                android:textSize="14sp" />
 
             <!-- generate button -->
             <Button
