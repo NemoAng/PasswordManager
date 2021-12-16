@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:paddingHorizontal="24dp"
+    android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:id="@+id/textViewDel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+ />
+
+    <!--    name-->
+
+    <!--    password length-->
+
+    <!-- password -->
+
+    <!-- generate button -->
+
+
+    <!--    buttons-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelDel"
+            android:text="@string/cancel"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="0dp"
+            android:background="@drawable/pass_gen_btn_shape"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/yesDel"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/yesDel"
+            android:text="@string/yes"
+
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="0dp"
+            android:background="@drawable/pass_gen_btn_shape"
+            android:ellipsize="end"
+            android:singleLine="true"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cancelDel"
+            tools:layout_editor_absoluteY="0dp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

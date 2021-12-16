@@ -57,10 +57,76 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 .inflate(R.layout.recyclerview_item, parent, false);
 
 //        CardView
-        View cardView = ((ViewGroup)view).getChildAt(0);
+        View cardView = ((ViewGroup) view).getChildAt(0);
+
+
+        View constraintLayout = ((ViewGroup) cardView).getChildAt(0);
 
 //        LinearLayout
-        View nextChildLL = ((ViewGroup)cardView).getChildAt(0);
+        View nextChildLL = ((ViewGroup) constraintLayout).getChildAt(0);
+
+
+        View imageDel = ((ViewGroup) constraintLayout).getChildAt(1);
+
+        imageDel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        v.setAlpha(0.6F);
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
+
+                        mBuilder.setTitle("Are You Sure?");
+                        //  Inflate the Layout Resource file you created in Step 1
+
+                        //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
+                        LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                        View mView = inflater.inflate(R.layout.account_remove, null);
+
+                        final TextView mRemove = (TextView) mView.findViewById(R.id.textViewDel);
+
+                        mRemove.setText("❤❤❤❤❤❤❤❤");
+
+
+                        Button mOk = (Button) mView.findViewById(R.id.yesDel);
+                        Button mCancel = (Button) mView.findViewById(R.id.cancelDel);
+
+                        //  Create the AlertDialog using everything we needed from above
+                        mBuilder.setView(mView);
+
+                        final AlertDialog accountDelDialog = mBuilder.create();
+
+                        mOk.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                new RemoveAccount().execute(nextChildLL);
+                                accountDelDialog.dismiss();
+                            }
+                        });
+
+                        mCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                accountDelDialog.dismiss();
+                            }
+                        });
+
+                        accountDelDialog.show();
+//                        break;
+                    case MotionEvent.ACTION_CANCEL: {
+                        v.setAlpha(1F);
+                        break;
+                    }
+                }
+                v.invalidate();
+                return true;
+            }
+        });
 
 //        nextChildLL.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -108,15 +174,15 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 // double-click code that is executed if the user double-taps
 //                Log.d("NEMO_DBG", "Double clicked.");
 
-                View v1 = ((ViewGroup)v).getChildAt(0);
-                View v2 = ((ViewGroup)v).getChildAt(1);
-                View v3 = ((ViewGroup)v).getChildAt(2);
-                View v4 = ((ViewGroup)v).getChildAt(3);
+                View v1 = ((ViewGroup) v).getChildAt(0);
+                View v2 = ((ViewGroup) v).getChildAt(1);
+                View v3 = ((ViewGroup) v).getChildAt(2);
+                View v4 = ((ViewGroup) v).getChildAt(3);
 
-                String title = ((TextView)v1).getText().toString();
-                String name = ((TextView)v2).getText().toString();
-                String pass = ((TextView)v3).getText().toString();
-                String id = ((TextView)v4).getText().toString();
+                String title = ((TextView) v1).getText().toString();
+                String name = ((TextView) v2).getText().toString();
+                String pass = ((TextView) v3).getText().toString();
+                String id = ((TextView) v4).getText().toString();
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
 
@@ -124,7 +190,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 //  Inflate the Layout Resource file you created in Step 1
 
                 //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
-                LayoutInflater inflater = (LayoutInflater)v.getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 //                View mView = inflater.inflate(R.layout.account_input_v1, null);
                 View mView = inflater.inflate(R.layout.account_input_v2, null);
@@ -152,7 +218,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 mOk.setOnTouchListener(btnEffect);
                 mOk.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick (View view) {
+                    public void onClick(View view) {
                         if (mTitle.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()) {
                             Toast.makeText(v.getContext(), "Title and password must be provided.", Toast.LENGTH_SHORT).show();
                         } else {
@@ -178,7 +244,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 mCancel.setOnTouchListener(btnEffect);
                 mCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick (View view) {
+                    public void onClick(View view) {
                         accountAddDialog.dismiss();
                     }
                 });
@@ -187,10 +253,10 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 mPaste.setOnTouchListener(btnEffect);
                 mPaste.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick (View view) {
-                        ClipboardManager clipboard =  (ClipboardManager)v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    public void onClick(View view) {
+                        ClipboardManager clipboard = (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
 
-                        if(clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+                        if (clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
                             ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
                             // Gets the clipboard as text.
                             mPassword.setText(item.getText());
@@ -208,16 +274,16 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 // double-click code that is executed if the user double-taps
 //                Log.d("NEMO_DBG", "Double clicked.");
 
-                View v1 = ((ViewGroup)v).getChildAt(0);
-                View v2 = ((ViewGroup)v).getChildAt(1);
-                View v3 = ((ViewGroup)v).getChildAt(2);
-                View v4 = ((ViewGroup)v).getChildAt(3);
+                View v1 = ((ViewGroup) v).getChildAt(0);
+                View v2 = ((ViewGroup) v).getChildAt(1);
+                View v3 = ((ViewGroup) v).getChildAt(2);
+                View v4 = ((ViewGroup) v).getChildAt(3);
 
-                String title = ((TextView)v1).getText().toString();
-                String name = ((TextView)v2).getText().toString();
-                String pass = ((TextView)v3).getText().toString();
+                String title = ((TextView) v1).getText().toString();
+                String name = ((TextView) v2).getText().toString();
+                String pass = ((TextView) v3).getText().toString();
 
-                String id = ((TextView)v4).getText().toString();
+                String id = ((TextView) v4).getText().toString();
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
 
@@ -225,7 +291,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 //  Inflate the Layout Resource file you created in Step 1
 
                 //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
-                LayoutInflater inflater = (LayoutInflater)v.getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 //                View mView = inflater.inflate(R.layout.account_input_v1, null);
                 View mView = inflater.inflate(R.layout.account_input_v2, null);
@@ -255,13 +321,13 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 mOk.setOnTouchListener(btnEffect);
                 mOk.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick (View view) {
-                        if (mTitle.getText().toString().trim().isEmpty()){
+                    public void onClick(View view) {
+                        if (mTitle.getText().toString().trim().isEmpty()) {
                             Toast.makeText(v.getContext(), "Account title empty.", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
-                        if (mName.getText().toString().trim().isEmpty()){
+                        if (mName.getText().toString().trim().isEmpty()) {
                             Toast.makeText(v.getContext(), "Account empty.", Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -269,20 +335,20 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 //                        if (mTitle.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()) {
 //                            Toast.makeText(v.getContext(), "Title and password must be provided.", Toast.LENGTH_SHORT).show();
 //                        } else {
-                            com.nemowang.passwordmanager.Account account = new com.nemowang.passwordmanager.Account(
-                                    mTitle.getText().toString(),
-                                    mName.getText().toString(),
-                                    mPassword.getText().toString());
+                        com.nemowang.passwordmanager.Account account = new com.nemowang.passwordmanager.Account(
+                                mTitle.getText().toString(),
+                                mName.getText().toString(),
+                                mPassword.getText().toString());
 
-                            account.uid = Integer.parseInt(id);
+                        account.uid = Integer.parseInt(id);
 
-                            new UpdateAccount().execute(view, account);
+                        new UpdateAccount().execute(view, account);
 
 //                            AccountRoomDatabase database = AccountRoomDatabase.getDatabase(mOk.getContext());
 //                            AccountDAO dao = database.accountDAO();
 //                            dao.insert(account);
 
-                            accountAddDialog.dismiss();
+                        accountAddDialog.dismiss();
 //                        }
                     }
                 });
@@ -291,7 +357,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 mCancel.setOnTouchListener(btnEffect);
                 mCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick (View view) {
+                    public void onClick(View view) {
                         accountAddDialog.dismiss();
                     }
                 });
@@ -300,10 +366,10 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 mGenerate.setOnTouchListener(btnEffect);
                 mGenerate.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick (View view) {
+                    public void onClick(View view) {
                         int pass_len = 0;
 
-                        try{
+                        try {
                             pass_len = Integer.parseInt(mPasswordLen.getText().toString());
                         } catch (NumberFormatException e) {
 
@@ -336,14 +402,14 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 // Toast.makeText(this, "Account name copied.", Toast.LENGTH_SHORT).show();
 
                 // View v1 = ((ViewGroup)view).getChildAt(0);
-                View v2 = ((ViewGroup)v).getChildAt(1);
+                View v2 = ((ViewGroup) v).getChildAt(1);
                 // View v3 = ((ViewGroup)view).getChildAt(2);
 
                 // String title = ((TextView)v1).getText().toString();
-                String name = ((TextView)v2).getText().toString();
+                String name = ((TextView) v2).getText().toString();
                 // String pass = ((TextView)v3).getText().toString();
 
-                ClipboardManager cbManager =  (ClipboardManager)v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cbManager = (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText(MainActivity.PASS_COPY_LABEL, name);
                 cbManager.setPrimaryClip(clip);
 
@@ -355,9 +421,9 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
         nextChildLL.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                View v3 = ((ViewGroup)v).getChildAt(2);
-                String pass = ((TextView)v3).getText().toString();
-                ClipboardManager cbManager =  (ClipboardManager)v3.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                View v3 = ((ViewGroup) v).getChildAt(2);
+                String pass = ((TextView) v3).getText().toString();
+                ClipboardManager cbManager = (ClipboardManager) v3.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("PASS_COPY_LABEL", pass);
                 cbManager.setPrimaryClip(clip);
                 Toast.makeText(v3.getContext(), "Password copied.", Toast.LENGTH_SHORT).show();
@@ -397,4 +463,31 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    private static class RemoveAccount extends AsyncTask<Object, Void, Void> {
+        @Override
+        protected Void doInBackground(Object... params) {
+            View v = (View) params[0];
+
+            View v1 = ((ViewGroup) v).getChildAt(3);
+
+            try{
+                CharSequence idStr = ((TextView)v1).getText();
+                int id = Integer.parseInt(String.valueOf(idStr));
+
+                AccountRoomDatabase database = AccountRoomDatabase.getDatabase(v.getContext());
+                AccountDAO dao = database.accountDAO();
+                dao.deleteById(id);
+            }
+            catch (NumberFormatException ex){
+                ex.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+
+        }
+    }
 }

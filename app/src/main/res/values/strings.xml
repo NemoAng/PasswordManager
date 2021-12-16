@@ -214,5 +214,6 @@
     <string name="AUTH_ID_WEB" translatable="false">913446610683-ds47a18rjrqpdtt7e9152of27vuu95r0.apps.googleusercontent.com</string>
     <string name="login">Login</string>
     <string name="password_required">Password required</string>
+    <string name="yes">Yes</string>
 
 </resources>

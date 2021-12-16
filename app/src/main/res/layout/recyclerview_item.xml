@@ -18,55 +18,74 @@
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 
-        <LinearLayout
-            android:id="@+id/lLTitleAndName"
-            android:background="@drawable/side_nav_bar_red"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent" >
 
-            android:onClick="onAccountClick"
+            <LinearLayout
+                android:id="@+id/lLTitleAndName"
+                android:background="@drawable/side_nav_bar_red"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical" >
+                android:onClick="onAccountClick"
+
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical" >
 
 
-            <TextView
-                android:id="@+id/tvAccountTitle"
+                <TextView
+                    android:id="@+id/tvAccountTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:singleLine="true"
+                    android:paddingHorizontal="@dimen/activity_horizontal_margin"
+
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAccountName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:singleLine="true"
+                    android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAccountPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvAccountID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageViewDel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:singleLine="true"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_vertical_margin"
 
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
 
-            <TextView
-                android:id="@+id/tvAccountName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:singleLine="true"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvAccountPass"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center" />
-
-            <TextView
-                android:id="@+id/tvAccountID"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center" />
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 </FrameLayout>

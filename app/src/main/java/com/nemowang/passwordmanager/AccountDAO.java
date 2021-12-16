@@ -40,6 +40,9 @@ public interface AccountDAO {
     @Update
     void update(Account Account);
 
+    @Query("DELETE FROM table_account WHERE uid = :id")
+    void deleteById(int id);
+
     @Delete
     void delete(Account account);//++
 
