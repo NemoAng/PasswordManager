@@ -7,11 +7,11 @@
     tools:context=".ui.home.HomeFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/recycler_view"
+        android:scrollbars="none"
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
         tools:listitem="@layout/recyclerview_item" />
 
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
@@ -50,3 +50,5 @@
         app:srcCompat="@drawable/ic_baseline_add_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+<!--not this file??? android:scrollbars="none" works for home -->

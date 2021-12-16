@@ -162,7 +162,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        RecyclerView recyclerView = root.findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
         final AccountListAdapter adapter = new AccountListAdapter(new AccountListAdapter.AccountDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -291,7 +291,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void unused) {
-            RecyclerView rcv = getActivity().findViewById(R.id.recyclerview);
+            RecyclerView rcv = getActivity().findViewById(R.id.recycler_view);
 
             int items = Objects.requireNonNull(rcv.getAdapter()).getItemCount();
 

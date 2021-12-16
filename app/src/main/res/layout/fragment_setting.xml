@@ -4,6 +4,9 @@
 
     <FrameLayout
         android:id="@+id/settings"
+        android:scrollbars="none"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
+<!--note this file-->

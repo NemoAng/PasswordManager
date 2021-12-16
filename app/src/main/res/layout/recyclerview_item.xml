@@ -13,8 +13,6 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginHorizontal="8dp"
 
-
-
         android:clickable="true"
         android:longClickable="true"
         app:cardPreventCornerOverlap="true"
