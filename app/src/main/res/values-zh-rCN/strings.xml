@@ -29,5 +29,6 @@
     <string name="search_account">搜索账号</string>
     <string name="password_length">密码长度</string>
     <string name="password_length_want">你想要的密码长度</string>
+    <string name="menu_home">主页</string>
 
 </resources>
