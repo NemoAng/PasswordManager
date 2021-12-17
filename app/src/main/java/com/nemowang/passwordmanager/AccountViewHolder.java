@@ -200,7 +200,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
 
-                mBuilder.setTitle("Input Your Account");
+                mBuilder.setTitle("XXX Your Account");
                 //  Inflate the Layout Resource file you created in Step 1
 
                 //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
@@ -301,7 +301,19 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
 
-                mBuilder.setTitle("Input Your Account");
+                TextView title_ = new TextView(v.getContext());
+
+                title_.setText(v.getContext().getResources().getString(R.string.title_edit));
+//                      title.setBackgroundColor(Color.parseColor("#ae52d4"));
+                title_.setPadding(25, 20, 25, 20);
+                title_.setGravity(Gravity.LEFT);
+                title_.setTextColor(Color.WHITE);
+                title_.setTextSize(20);
+
+                MainActivity.setBackgroundResource(title_);
+
+//                mBuilder.setTitle("Edit Your Account");
+                mBuilder.setCustomTitle(title_);
                 //  Inflate the Layout Resource file you created in Step 1
 
                 //View mView = getLayoutInflater().inflate(R.layout.account_input, null);
@@ -316,6 +328,8 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                 final EditText mTitle = (EditText) mView.findViewById(R.id.edtTitle);
                 final EditText mName = (EditText) mView.findViewById(R.id.edtName);
                 final EditText mPassword = (EditText) mView.findViewById(R.id.edtPass);
+
+                mPassword.setEnabled(true);
 
                 final EditText mPasswordLen = (EditText) mView.findViewById(R.id.edtPassLen);
 

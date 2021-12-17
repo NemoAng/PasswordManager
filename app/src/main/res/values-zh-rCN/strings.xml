@@ -52,9 +52,10 @@
     <string name="reset_password">重设密码？</string>
     <string name="input_account">输入你的账号</string>
     <string name="a_u_sure">确定删除？</string>
+    <string name="title_edit">编辑账号</string>
     <string name="yes">是</string>
     <string name="about_and">关于</string>
     <string name="action_about">关于</string>
-    <string name="about_spec">初始密码为空.\n\n登录密码加密方式从BASE64/DES切换到MD5会清除当前密码。</string>
+    <string name="about_spec">初始密码为空。\n\n登录密码加密方式从BASE64/DES切换到MD5会清除当前密码。\n\n点按账号卡片复制账号名称\n长按账号卡片复制账号密码。\n快速按两次编辑当前账号.</string>
 
 </resources>

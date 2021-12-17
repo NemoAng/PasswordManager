@@ -52,7 +52,7 @@
     <color name="secondaryLightColor_Green">#4c8c4a</color>
     <color name="secondaryDarkColor_Green">#003300</color>
 
-    <color name="primaryTextColor_Green">#000000</color>
+    <color name="primaryTextColor_Green">#ffffff</color>
     <color name="secondaryTextColor_Green">#ffffff</color>
 
     <!--******************************************************-->
@@ -64,7 +64,7 @@
     <color name="secondaryLightColor_Orange">#ff833a</color>
     <color name="secondaryDarkColor_Orange">#ac1900</color>
 
-    <color name="primaryTextColor_Orange">#000000</color>
-    <color name="secondaryTextColor_Orange">#000000</color>
+    <color name="primaryTextColor_Orange">#ffffff</color>
+    <color name="secondaryTextColor_Orange">#ffffff</color>
 
 </resources>

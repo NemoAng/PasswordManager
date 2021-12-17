@@ -4,13 +4,17 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/purple_200</item>
         <item name="colorSecondaryVariant">@color/purple_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Applying style like this  -->
+        <!--        <item name="actionBarStyle">?attr/colorPrimaryVariant</item> doesn't work -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+        <item name="android:textColor">@color/white</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/courbd</item>
     </style>
@@ -19,13 +23,19 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryLightColor_Red</item>
         <item name="colorPrimaryVariant">@color/primaryColor_Red</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColor_Red</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor_Red</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Applying style like this  -->
+        <!--        <item name="actionBarStyle">?attr/colorPrimaryVariant</item> doesn't work -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+
+<!--        <item name="android:itemBackground">@color/white</item>-->
+        <item name="android:textColor">@color/primaryTextColor_Red</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/courbd</item>
     </style>
@@ -34,13 +44,17 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryLightColor_Purple</item>
         <item name="colorPrimaryVariant">@color/primaryColor_Purple</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColor_Purple</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor_Purple</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Applying style like this  -->
+        <!--        <item name="actionBarStyle">?attr/colorPrimaryVariant</item> doesn't work -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+        <item name="android:textColor">@color/primaryTextColor_Purple</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/courbd</item>
     </style>
@@ -49,13 +63,17 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryLightColor_Indigo</item>
         <item name="colorPrimaryVariant">@color/primaryColor_Indigo</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColor_Indigo</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor_Indigo</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Applying style like this  -->
+        <!--        <item name="actionBarStyle">?attr/colorPrimaryVariant</item> doesn't work -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+        <item name="android:textColor">@color/primaryTextColor_Indigo</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/courbd</item>
     </style>
@@ -64,13 +82,17 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryLightColor_Green</item>
         <item name="colorPrimaryVariant">@color/primaryColor_Green</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColor_Green</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor_Green</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Applying style like this  -->
+        <!--        <item name="actionBarStyle">?attr/colorPrimaryVariant</item> doesn't work -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+        <item name="android:textColor">@color/primaryTextColor_Green</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/courbd</item>
     </style>
@@ -79,13 +101,17 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryLightColor_Orange</item>
         <item name="colorPrimaryVariant">@color/primaryColor_Orange</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColor_Orange</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor_Orange</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Applying style like this  -->
+        <!--        <item name="actionBarStyle">?attr/colorPrimaryVariant</item> doesn't work -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+        <item name="android:textColor">@color/primaryTextColor_Orange</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/courbd</item>
     </style>
