@@ -60,17 +60,14 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
 //        CardView
         View cardView = ((ViewGroup) view).getChildAt(0);
-
-
         View constraintLayout = ((ViewGroup) cardView).getChildAt(0);
 
 //        LinearLayout
         View nextChildLL = ((ViewGroup) constraintLayout).getChildAt(0);
-
-
         View imageDel = ((ViewGroup) constraintLayout).getChildAt(1);
 
         imageDel.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -114,6 +111,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
                         final AlertDialog accountDelDialog = mBuilder.create();
 
+                        mOk.setOnTouchListener(btnEffect);
                         mOk.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -123,6 +121,7 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
                             }
                         });
 
+                        mCancel.setOnTouchListener(btnEffect);
                         mCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -463,6 +462,26 @@ class AccountViewHolder extends RecyclerView.ViewHolder {
 
         return new AccountViewHolder(view);
     }
+
+    private static final View.OnTouchListener btnEffect = new View.OnTouchListener() {
+        @SuppressLint("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    v.setAlpha(0.6F);
+                    break;
+                }
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL: {
+                    v.setAlpha(1F);
+                    break;
+                }
+            }
+            v.invalidate();
+            return false;
+        }
+    };
 
     ///
     private static class UpdateAccount extends AsyncTask<Object, Void, Void> {
