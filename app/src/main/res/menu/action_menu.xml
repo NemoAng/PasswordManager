@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_hive"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_hive_24"
-        android:title="@string/action_hive"
-        android:queryHint="Hint text"
-        android:hint="@string/search_account"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/action_search"
         android:orderInCategory="100"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/action_search"
         android:layout_gravity="center"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_hive"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_baseline_hive_24"
+        android:title="@string/action_hive"
+        android:queryHint="Hint text"
+        android:hint="@string/search_account"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_settings"

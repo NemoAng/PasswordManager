@@ -47,27 +47,42 @@ public class SettingsActivity extends AppCompatActivity {
                     .replace(R.id.settings, new SettingFragment())
                     .commit();
         }
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//        }
+
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        assert actionBar != null;
+
+        int theme_id;
+        switch (MainActivity.SETTING_THEME) {
+            case "Red":
+            case "红色":
+                theme_id = R.drawable.side_nav_bar_red;
+                break;
+            case "Purple":
+            case "紫色":
+                theme_id = R.drawable.side_nav_bar_purple;
+                break;
+            case "Indigo":
+            case "靛青":
+                theme_id = R.drawable.side_nav_bar_indigo;
+                break;
+            case "Green":
+            case "绿色":
+                theme_id = R.drawable.side_nav_bar_green;
+                break;
+            case "Orange":
+            case "橙色":
+                theme_id = R.drawable.side_nav_bar_orange;
+                break;
+            default:
+                theme_id = R.raw.bar_src;
         }
+        actionBar.setBackgroundDrawable(getResources().getDrawable(theme_id,null));
 
         PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
-
-//        SharedPreferences sharedPref =
-//                PreferenceManager.getDefaultSharedPreferences(this);
-//
-//        sharedPref.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
-//            @Override
-//            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//
-//                if(key.equals(SETTING_THEME)) {
-//                    recreate();
-//                 }
-//            }
-//        });
-
-        Log.d("NEMO_DBG", "SettingsActivity->onCreate");
     }
 
     @Override
