@@ -6,7 +6,6 @@
     <string name="action_about">About</string>
     
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
     <string name="menu_pass_generator">Password Generator</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -227,5 +226,8 @@
     <string name="coco" translatable="false">CoCo...</string>
     <string name="about_and">About</string>
     <string name="about_spec">Initial password is empty.\n\nEncryption method switch fromBASE64/DES to MD5 will remove current password.\n\nSingle tap to copy you account name.\nLong press to copy your account password.\nDouble tap to edit your account.</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="local_time_wpg_ca">Local Time:(WPG, CA?!)</string>
+    <string name="china_time_sh_cn">China Time:(SH, CN)</string>
 
 </resources>

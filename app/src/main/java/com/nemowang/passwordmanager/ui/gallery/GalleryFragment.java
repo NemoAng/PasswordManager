@@ -33,6 +33,8 @@ public class GalleryFragment extends Fragment {
     private String dateFormatString = "yyyy/MM/dd HH:mm";
     private static DateTime workingOn10 = new DateTime(2022, 6, 2, 0, 0, 0);
 
+    private static String[] weekdayNames = new String[]{"星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
@@ -76,48 +78,6 @@ public class GalleryFragment extends Fragment {
 
         freshTime(root);
 
-        /**********************************/
-//        LocalDateTime wpg_dt = LocalDateTime.now();
-//        int wpg_hour = wpg_dt.getHour();
-//        DayOfWeek wpg_week = wpg_dt.getDayOfWeek();
-//        String wpg_week_str = wpg_week.getDisplayName(TextStyle.FULL, Locale.CHINESE);
-//
-//        DateTimeFormatter dtFormatObj = DateTimeFormatter.ofPattern(dateFormatString);
-//
-//        wpg_tv.setText(wpg_dt.format(dtFormatObj));
-//        if(wpg_hour < 5)
-//            wpg_tv2.setText(wpg_week_str + ", " + "凌晨, " + String.valueOf(wpg_hour) + "点");
-//        else if(wpg_hour < 12)
-//            wpg_tv2.setText(wpg_week_str + ", " + "上午, " + String.valueOf(wpg_hour) + "点");
-//        else if(wpg_hour < 19)
-//            wpg_tv2.setText(wpg_week_str + ", " + "下午, " + String.valueOf(wpg_hour - 12) + "点");
-//        else
-//            wpg_tv2.setText(wpg_week_str + ", " + "晚上, " + String.valueOf(wpg_hour - 12) + "点");
-//
-//        /**********************************/
-//        DateTimeZone sh_zone = DateTimeZone.forID("Asia/Shanghai");
-//        DateTime dt_sh = new DateTime(sh_zone);
-//        DateTime workingOn10 = new DateTime(2022, 6, 2, 0, 0, 0, sh_zone);
-//
-//        org.joda.time.format.DateTimeFormatter dtFormatObjSH = DateTimeFormat.forPattern(dateFormatString);
-//        int sh_hour = dt_sh.getHourOfDay();
-//        DateTime sh_t_span = dt_sh.minus(workingOn10.getMillis());
-//
-//        sh_tv.setText(dtFormatObjSH.print(dt_sh));
-//        if(sh_hour < 5)
-//            sh_tv2.setText(wpg_week_str + ", " + "凌晨, " + String.valueOf(sh_hour) + "点");
-//        else if(sh_hour < 12)
-//            sh_tv2.setText(wpg_week_str + ", " + "上午, " + String.valueOf(sh_hour) + "点");
-//        else if(sh_hour < 19)
-//            sh_tv2.setText(wpg_week_str + ", " + "下午, " + String.valueOf(sh_hour - 12) + "点");
-//        else
-//            sh_tv2.setText(wpg_week_str + ", " + "晚上, " + String.valueOf(sh_hour - 12) + "点");
-//
-//        if(sh_t_span.getDayOfYear() % 2 == 0)
-//            do_thing_tv.setText("今天10点做事？" + "<Yes>");
-//        else
-//            do_thing_tv.setText("今天10点做事？" + "<No>");
-
         return root;
     }
 
@@ -139,7 +99,7 @@ public class GalleryFragment extends Fragment {
         DateTimeFormatter dtFormatObj = DateTimeFormatter.ofPattern(dateFormatString);
 
         wpg_tv.setText(wpg_dt.format(dtFormatObj));
-        if(wpg_hour < 5)
+        if(wpg_hour < 6)
             wpg_tv2.setText(wpg_week_str + ", " + "凌晨, " + String.valueOf(wpg_hour) + "点");
         else if(wpg_hour < 12)
             wpg_tv2.setText(wpg_week_str + ", " + "上午, " + String.valueOf(wpg_hour) + "点");
@@ -151,26 +111,34 @@ public class GalleryFragment extends Fragment {
         /**********************************/
         DateTimeZone sh_zone = DateTimeZone.forID("Asia/Shanghai");
         DateTime dt_sh = new DateTime(sh_zone);
+        int sh_week = dt_sh.getDayOfWeek();
+        String sh_week_str = weekdayNames[sh_week];//dt_sh.getDisplayName(TextStyle.FULL, Locale.CHINESE);
         DateTime workingOn10 = new DateTime(2022, 6, 2, 0, 0, 0, sh_zone);
 
         org.joda.time.format.DateTimeFormatter dtFormatObjSH = DateTimeFormat.forPattern(dateFormatString);
         int sh_hour = dt_sh.getHourOfDay();
-        DateTime sh_t_span = dt_sh.minus(workingOn10.getMillis());
+        //DateTime sh_t_span = dt_sh.minus(workingOn10.getMillis());
+        int sh_t_span_day = dt_sh.getDayOfYear() - workingOn10.getDayOfYear();
 
         sh_tv.setText(dtFormatObjSH.print(dt_sh));
-        if(sh_hour < 5)
-            sh_tv2.setText(wpg_week_str + ", " + "凌晨, " + String.valueOf(sh_hour) + "点");
+        if(sh_hour < 6)
+            sh_tv2.setText(sh_week_str + ", " + "凌晨, " + String.valueOf(sh_hour) + "点");
         else if(sh_hour < 12)
-            sh_tv2.setText(wpg_week_str + ", " + "上午, " + String.valueOf(sh_hour) + "点");
+            sh_tv2.setText(sh_week_str + ", " + "上午, " + String.valueOf(sh_hour) + "点");
         else if(sh_hour < 19)
-            sh_tv2.setText(wpg_week_str + ", " + "下午, " + String.valueOf(sh_hour - 12) + "点");
+            sh_tv2.setText(sh_week_str + ", " + "下午, " + String.valueOf(sh_hour - 12) + "点");
         else
-            sh_tv2.setText(wpg_week_str + ", " + "晚上, " + String.valueOf(sh_hour - 12) + "点");
+            sh_tv2.setText(sh_week_str + ", " + "晚上, " + String.valueOf(sh_hour - 12) + "点");
 
-        if(sh_t_span.getDayOfYear() % 2 == 0)
-            do_thing_tv.setText("今天10点做事？" + "<Yes>");
+//        Log.d("NEMO_DBG_DT", String.valueOf(workingOn10.getDayOfYear()));
+//        Log.d("NEMO_DBG_DT", String.valueOf(dt_sh.getDayOfYear()));
+
+//        Log.d("NEMO_DBG_DT", String.valueOf(sh_t_span.getDayOfYear()));
+        //if(sh_t_span.getDayOfYear() % 2 == 0)
+        if(sh_t_span_day % 2 == 0)
+            do_thing_tv.setText("今天10:00AM-6:00PM做事.");
         else
-            do_thing_tv.setText("今天10点做事？" + "<No>");
+            do_thing_tv.setText("今天7:00AM-3:00PM做事.");
     }
 
     @Override

@@ -7,8 +7,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,6 +24,79 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:text="🥰🥰🥰😘😘😘"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/coco"
+                android:scaleType="fitXY"
+                android:src="@raw/coco2014" />
+
+            <TextView
+                android:id="@+id/text_gallery2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="🥰🥰🥰😘😘😘"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/coco"
+                android:scaleType="fitXY"
+                android:src="@raw/coco2015" />
+
+            <TextView
+                android:id="@+id/text_gallery3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="🥰🥰🥰😘😘😘"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/coco"
+                android:scaleType="fitXY"
+                android:src="@raw/coco2016" />
+
+            <TextView
+                android:id="@+id/text_gallery4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="🥰🥰🥰😘😘😘"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/coco"
+                android:scaleType="fitXY"
+                android:src="@raw/coco2019" />
+
+            <TextView
+                android:id="@+id/text_gallery5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="🥰🥰🥰😘😘😘"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -40,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Winnipeg Time:(CA)"
+                android:text="@string/local_time_wpg_ca"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -64,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Shanghai Time:(CN)"
+                android:text="@string/china_time_sh_cn"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 

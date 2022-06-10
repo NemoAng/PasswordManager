@@ -45,7 +45,7 @@
     <string name="invalid_username">用户名无效</string>
     <string name="welcome" translatable="false">欢迎</string>
     <string name="hint_password" translatable="false">输入你的密码</string>
-    <string name="password_required">需要密码</string>
+    <string name="password_required">需要密码，初始密码为空</string>
     <string name="login_password">登录密码</string>
     <string name="security_setting">安全设置</string>
     <string name="encrypt_list">加密方式</string>
@@ -57,5 +57,8 @@
     <string name="about_and">关于</string>
     <string name="action_about">关于</string>
     <string name="about_spec">初始密码为空。\n\n登录密码加密方式从BASE64/DES切换到MD5会清除当前密码。\n\n点按账号卡片复制账号名称\n长按账号卡片复制账号密码。\n快速按两次编辑当前账号.</string>
+    <string name="menu_gallery">相册</string>
+    <string name="local_time_wpg_ca">本地时间:(温尼伯, 加拿大?!)</string>
+    <string name="china_time_sh_cn">中国时间:(上海, 中国)</string>
 
 </resources>
