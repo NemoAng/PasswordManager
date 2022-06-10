@@ -105,4 +105,6 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:$room_version"
+
+    implementation 'joda-time:joda-time:2.10.14'
 }

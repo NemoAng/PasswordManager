@@ -224,7 +224,7 @@
     <string name="yes">Yes</string>
     <string name="security_setting">Security Setting</string>
     <string name="login_password">Login Password</string>
-    <string name="coco">CoCo...</string>
+    <string name="coco" translatable="false">CoCo...</string>
     <string name="about_and">About</string>
     <string name="about_spec">Initial password is empty.\n\nEncryption method switch fromBASE64/DES to MD5 will remove current password.\n\nSingle tap to copy you account name.\nLong press to copy your account password.\nDouble tap to edit your account.</string>
 
